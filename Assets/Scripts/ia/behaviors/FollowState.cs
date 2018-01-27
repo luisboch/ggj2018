@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class Follow : State {
+public class FollowState : State {
 
     private EventAction nextAction;
 
-    public Follow() {
+    public FollowState() {
     }
 
     public override void start(GameObject obj) {
@@ -16,7 +16,7 @@ public class Follow : State {
         return 3;
     }
 
-    public Follow whenArrive(EventAction whenArrive, GameObject target) {
+    public FollowState whenArrive(EventAction whenArrive, GameObject target) {
         this.nextAction = whenArrive;
         setTarget(target);
         return this;

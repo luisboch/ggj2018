@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Random : State {
+public class RandomState : State {
 
     private System.Random rnd = new System.Random();
 

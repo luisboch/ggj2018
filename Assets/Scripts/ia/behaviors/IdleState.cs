@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Idle : State {
+public class IdleState : State {
 
     public override State update(GameObject obj) {
         return this;

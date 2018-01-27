@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class Eat : State {
+public class EatState : State {
 
     private float lastTime = 0;
     private float timeToEat = 3f;
     private EventAction nextAction;
 
-    public Eat() {
+    public EatState() {
     }
 
     public override void start(GameObject obj) {
@@ -18,13 +18,13 @@ public class Eat : State {
         return 2;
     }
 
-    public Eat setToEat(GameObject toEat) {
+    public EatState setToEat(GameObject toEat) {
         setTarget(toEat);
         this.lastTime = Time.time;
         return this;
     }
 
-    public Eat setAfterEat(EventAction afterEat) {
+    public EatState setAfterEat(EventAction afterEat) {
         this.nextAction = afterEat;
         return this;
     }

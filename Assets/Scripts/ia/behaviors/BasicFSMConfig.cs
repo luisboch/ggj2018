@@ -6,9 +6,9 @@ public class BasicFSMConfig : MonoBehaviour {
     void Start() {
         FSMManager manager = GetComponent<FSMManager>();
 
-        Random search = new Random();
-        Follow follow = new Follow();
-        Eat eat = new Eat();
+        RandomState search = new RandomState();
+        FollowState follow = new FollowState();
+        EatState eat = new EatState();
 
         /**
             Search for "food"

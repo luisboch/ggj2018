@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Patrol : State {
+public class PatrolState : State {
 
     public Transform[] positions;
     public bool rotate;
@@ -11,9 +11,15 @@ public class Patrol : State {
     }
 
     public override State update(GameObject obj) {
+        bool hasArrived = hasArrived();
 
+        //        int  next = nextIndex();
 
         return this;
 
+    }
+
+    private bool hasArrived() {
+        return false;
     }
 }

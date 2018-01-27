@@ -4,9 +4,9 @@ public class SoliderLvl1 : MonoBehaviour {
     void Start() {
         FSMManager manager = GetComponent<FSMManager>();
 
-        Random search = new Random();
-        Follow follow = new Follow();
-        Idle idle = new Idle();
+        RandomState search = new RandomState();
+        FollowState follow = new FollowState();
+        IdleState idle = new IdleState();
 
         manager.setCurrentState(idle);
     }
