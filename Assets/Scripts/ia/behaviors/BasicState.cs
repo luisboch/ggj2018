@@ -88,7 +88,9 @@ public class BasicState : State {
             if (raycast && raycast.collider == target) {
                 return true;
             }
+
         }
+        return false;
 
     }
 
