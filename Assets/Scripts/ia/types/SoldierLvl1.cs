@@ -8,6 +8,7 @@ public class SoldierLvl1 : MonoBehaviour {
 
     void Start() {
         fromAttr = GetComponent<BasicObjectAttr>();
+        this.originalPos.transform.parent = null;
         FSMManager manager = GetComponent<FSMManager>();
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
 
@@ -17,12 +18,12 @@ public class SoldierLvl1 : MonoBehaviour {
         idle.isInfinite = true;
         InvestigateState investigateState = new InvestigateState();
 
-        manager.setCurrentState(idle);
         manager.GetBasicState().configure("Player",
                 (o) => {
-                    return idle;
+                    return null;
                 },
                 (o) => {
+                    Debug.Log("HERE");
                     investigateState.setTargetPos(o.transform.position);
                     investigateState.SetDoWhenArrive((s) => {
 
@@ -51,5 +52,6 @@ public class SoldierLvl1 : MonoBehaviour {
 
                     return investigateState;
                 });
+        manager.setCurrentState(idle);
     }
 }

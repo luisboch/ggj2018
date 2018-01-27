@@ -75,7 +75,6 @@ public class BasicState : State {
     private State notify(GameObject gameObject0, bool dangerArea) {
         foreach (SearchConf c in this.searchConfig) {
             if (c.searchTypes.Contains(gameObject0.tag)) {
-
                 if (_config.alert || dangerArea) {
                     return c.doWhenAlert.Invoke(gameObject0);
                 }

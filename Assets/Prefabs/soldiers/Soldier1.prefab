@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 114943903484588226}
   - component: {fileID: 114778235999034416}
   - component: {fileID: 114076847280342928}
-  - component: {fileID: 114218019608507930}
+  - component: {fileID: 114349728851085068}
   m_Layer: 0
   m_Name: Soldier1
   m_TagString: Enemy
@@ -91,7 +91,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1328843198528548}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.67, y: 0.55, z: 1.745}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alertDistPercent: 0
---- !u!114 &114218019608507930
+--- !u!114 &114349728851085068
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -269,7 +269,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1328843198528548}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc4489a80fe894f3393da1dee41b721b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6036e9f0c6f9b46e58372b52d09bfd63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   originalPos: {fileID: 1063088110370688}
@@ -341,7 +341,7 @@ CharacterController:
   m_Enabled: 0
   serializedVersion: 2
   m_Height: 1.0000002
-  m_Radius: 0.5000001
+  m_Radius: 0.2
   m_SlopeLimit: 1
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -360,7 +360,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

@@ -71,15 +71,6 @@ public class FSMManager : MonoBehaviour, IEventSystemHandler {
 
     }
 
-    public void receiveHit(GameObject from, int force) {
-        //        Attack attack = new Attack();
-        //
-        //        if (this.currentState == null || this.currentState.getCod() != attack.getCod() ) {
-        //            setCurrentState(attack.setTarget(from));
-        //        }
-    }
-
-
     void Update() {
 
 
@@ -92,12 +83,10 @@ public class FSMManager : MonoBehaviour, IEventSystemHandler {
 
             // This state was finished?
             if (next == null) {
-                Debug.Log("Finished state " + currentState);
                 finishCurrentState();
             } else if (next != this.currentState) {
                 // The state was updated?
                 // Then use the new state, and add to List
-                Debug.Log("Changing state to: " + next);
                 setCurrentState(next);
             }
         }

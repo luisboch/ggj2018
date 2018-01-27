@@ -38,9 +38,6 @@ public class Config : MonoBehaviour {
             this._alert = false;
             remainingAlertTime = -1;
         }
-
-        Debug.Log("Alert: " + alert);
-
     }
 
     public static Config getInstance() {
