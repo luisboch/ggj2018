@@ -16,7 +16,11 @@ TagManager:
   - Player4
   - Player3
   - Disguise
+<<<<<<< Updated upstream
   - Info
+=======
+  - Debug
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX

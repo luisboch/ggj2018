@@ -1,43 +1,39 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 
 public class SecurityCamera : MonoBehaviour
 {
+	//Rotation Sensitivity
+	public float RotationSensitivity = 35.0f;
+	public float minAngle = -45.0f;
+	public float maxAngle = 45.0f;
+     
+	//Rotation Value
+	float yRotate = 0.0f;
+	private Vector3 _startAngle;
 
-	public float Speed = 1;
-	public float Angle = 15;
-	private double _startAngle;
-	private LineOfSight _lineOfSight;
-	
-	// Use this for initialization
-	void Start ()
+	private void Start()
 	{
-		_startAngle = transform.eulerAngles.y;
-		_lineOfSight = GetComponentInChildren<LineOfSight>();
+		_startAngle = transform.eulerAngles;
 	}
-	
-	void Update()
-	{
-		var currentAngle = transform.eulerAngles.y;
-		var currentAngleLocal = transform.localEulerAngles.y;
-		var minAngle = _startAngle - Angle;
-		var maxAngle = _startAngle + Angle;
 
-		
-		Debug.Log("Min Angle: " + minAngle + " Max Angle: " + maxAngle + " Current Angle: " + currentAngle + " Local Current Angle: " + currentAngleLocal);
-		if (currentAngle > maxAngle)
+	// Update is called once per frame
+	void Update () {
+         
+		//Rotate Y view
+		yRotate += RotationSensitivity * Time.deltaTime;
+		yRotate = Mathf.Clamp (yRotate, minAngle, maxAngle);
+
+		if (yRotate == 45 || yRotate == -45)
 		{
-			Speed *= -1;
+			RotationSensitivity *= -1;
 		}
 		
-		transform.eulerAngles += new Vector3(0, Speed, 0);
-		
-		if (_lineOfSight.SeeByTag("Player")) {
-			_lineOfSight.SetStatus(LineOfSight.Status.Alerted);
-		} else {
-			_lineOfSight.SetStatus(LineOfSight.Status.Idle);
-		}
+		transform.eulerAngles = (new Vector3 (0.0f, yRotate, 0.0f)) + _startAngle;
 	}
 }
