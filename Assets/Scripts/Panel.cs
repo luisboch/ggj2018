@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Panel : MonoBehaviour {
 
-    private bool key_panel = true;
+    public bool key_panel = true;
     Config config = new Config();
 
 	// Use this for initialization

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Lights : MonoBehaviour {
-    private bool light = true;
+    public bool light = true;
     private SpriteRenderer spr_renderer;
 
     Config config = new Config();
