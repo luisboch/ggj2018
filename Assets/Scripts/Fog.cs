@@ -8,21 +8,31 @@ public class Fog : MonoBehaviour {
     private Renderer renderer;
     public float Timer = 10;
     private float internalTimer;
-
+    Config config;
 	// Use this for initialization
 	void Start () {
         renderer = this.gameObject.GetComponent<Renderer>();
+        config = Config.getInstance();
     }
 
     // Update is called once per frame
     void Update () {
-        internalTimer -= Time.deltaTime; 
+        internalTimer -= Time.deltaTime;
 
-		if (Players.Count <= 0 || internalTimer <= 0)
+        if (config.lightIsOn == false)
         {
             turnLightsOff();
         }
-	}
+        if (config.lightIsOn == true)
+        {
+            turnLightsOn();
+        }
+        
+      /* else if (config.lightIsOn == false)
+        {
+            turnLightsOff();
+        }}*/
+    }
 
     void OnTriggerEnter(Collider other)
     {
