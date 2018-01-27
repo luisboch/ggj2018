@@ -267,7 +267,7 @@ InputManager:
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: joystick 1 button 0
-    altNegativeButton: 
+    altNegativeButton: space
     altPositiveButton: 
     gravity: 0
     dead: 0.1
@@ -675,5 +675,53 @@ InputManager:
     snap: 0
     invert: 1
     type: 2
+    axis: 9
+    joyNum: 4
+  - serializedVersion: 3
+    m_Name: X360_LStickX01
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: right
+    positiveButton: left
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.1
+    sensitivity: 1000
+    snap: 0
+    invert: 1
+    type: 0
+    axis: 9
+    joyNum: 4
+  - serializedVersion: 3
+    m_Name: X360_LStickY01
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: up
+    positiveButton: down
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.1
+    sensitivity: 1000
+    snap: 0
+    invert: 1
+    type: 0
+    axis: 9
+    joyNum: 4
+  - serializedVersion: 3
+    m_Name: a
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: down
+    positiveButton: up
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0.1
+    sensitivity: 1000
+    snap: 0
+    invert: 1
+    type: 0
     axis: 9
     joyNum: 4
