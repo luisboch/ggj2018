@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SoliderLvl1 : MonoBehaviour {
+public class SoldierLvl2 : MonoBehaviour {
     void Start() {
         FSMManager manager = GetComponent<FSMManager>();
 
@@ -9,5 +9,10 @@ public class SoliderLvl1 : MonoBehaviour {
         IdleState idle = new IdleState();
 
         manager.setCurrentState(idle);
+        manager.GetBasicState().config("Player",
+                o => follow.whenArrive((s) => {
+                   // What we do when arrive?
+                    return null;
+                }, o));
     }
 }

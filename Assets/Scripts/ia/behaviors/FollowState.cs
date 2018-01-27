@@ -9,7 +9,6 @@ public class FollowState : State {
 
     public override void start(GameObject obj) {
         base.start(obj);
-//        obj.Send<IAnimalAnimatorHelper>(_ => _.run(1));
     }
 
     public override int getCod() {
@@ -32,13 +31,15 @@ public class FollowState : State {
         || dist > fromAttr.followLimit) {
             // Target is dead or lost
             return null;
-        } else if (dist < (fromAttr.arriveDist + (fromCtrl.radius) + (targetCtrl.radius) )) {
+        } else if (dist < (fromAttr.arriveDist + (fromCtrl.radius) + (targetCtrl == null ? 0 : targetCtrl.radius) )) {
             return nextAction == null ? null : (State) nextAction.Invoke(target);
         }
 
-        obj.transform.LookAt(target.transform.position);
+//        obj.transform.LookAt(target.transform.position);/
 
-//        obj.Send<IAnimalAnimatorHelper>(_ => _.run(1));
+        Vector3 def = target.transform.position - obj.transform.position ;
+
+        obj.transform.position += (def.normalized * fromAttr.velocity * Time.deltaTime);
 
         return this;
     }

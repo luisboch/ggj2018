@@ -23,14 +23,14 @@ public class Player : MonoBehaviour
     private float life = 4;
     private int ammo = 10;
 
-    Text lifeText;
-    Text ammoText;
+    //Text lifeText;
+    //Text ammoText;
 
-    //referências aos demais players para saber se o jogo
-    //acabou ou não quando esse player morrer
-    GameObject player2;
-    GameObject player3;
-    GameObject player4;
+    //referï¿½ncias aos demais players para saber se o jogo
+    //acabou ou nï¿½o quando esse player morrer
+    //GameObject player2;
+    //GameObject player3;
+    //GameObject player4;
 
     // Use this for initialization
     void Awake()
@@ -39,26 +39,25 @@ public class Player : MonoBehaviour
         MoveLeft = false;
         MoveUp = false;
         MoveDown = false;
+
+        
     }
 
     void Start()
     {
-
-
         countdown = FindObjectOfType(typeof(Countdown)) as Countdown;
 
-        lifeText = GameObject.Find("LifePlayer1").GetComponentInChildren<Text>();
-        ammoText = GameObject.Find("AmmoPlayer1").GetComponentInChildren<Text>();
+        //lifeText = GameObject.Find("LifePlayer1").GetComponentInChildren<Text>();
+        //ammoText = GameObject.Find("AmmoPlayer1").GetComponentInChildren<Text>();
 
-        lifeText.text = "x " + life;
-        ammoText.text = "x " + ammo;
+        //lifeText.text = "x " + life;
+        //ammoText.text = "x " + ammo;
 
-        player2 = GameObject.Find("Player2");
-        player3 = GameObject.Find("Player3");
-        player4 = GameObject.Find("Player4");
+        //player2 = GameObject.Find("Player2");
+        //player3 = GameObject.Find("Player3");
+        //player4 = GameObject.Find("Player4");
 
-        bulletPosition.transform.position = new Vector3(spritePlayer.transform.position.x + 0.5f, 1, spritePlayer.transform.position.z);
-        arma.transform.position = new Vector3(spritePlayer.transform.position.x + 0.25f, 1, spritePlayer.transform.position.z);
+        AimingUp();
     }
 
     // Update is called once per frame
@@ -98,36 +97,56 @@ public class Player : MonoBehaviour
             else if (MoveDown)
             tmpBullet.GetComponent<Bullet>().StartDirection(new Vector3(0, 0, -1));
 
-            ammo -= 1;
-            ammoText.text = "x " + ammo;
+            //ammo -= 1;
+            //ammoText.text = "x " + ammo;
         }
+    }
+
+    void AimingLeft()
+    {
+        MoveRight = false; MoveLeft = true; MoveUp = false; MoveDown = false;
+        bulletPosition.transform.position = new Vector3(spritePlayer.transform.position.x - 0.5f, 1, spritePlayer.transform.position.z);
+        arma.transform.position = new Vector3(spritePlayer.transform.position.x - 0.25f, 1, spritePlayer.transform.position.z);
+    }
+
+    void AimingRight()
+    {
+        MoveRight = true; MoveLeft = false; MoveUp = false; MoveDown = false;
+        bulletPosition.transform.position = new Vector3(spritePlayer.transform.position.x + 0.5f, 1, spritePlayer.transform.position.z);
+        arma.transform.position = new Vector3(spritePlayer.transform.position.x + 0.25f, 1, spritePlayer.transform.position.z);
+    }
+
+    void AimingUp()
+    {
+        MoveRight = false; MoveLeft = false; MoveUp = true; MoveDown = false;
+        bulletPosition.transform.position = new Vector3(spritePlayer.transform.position.x, 1, spritePlayer.transform.position.z + 0.5f);
+        arma.transform.position = new Vector3(spritePlayer.transform.position.x, 1, spritePlayer.transform.position.z + 0.25f);
+    }
+
+    void AimingDown()
+    {
+        MoveRight = false; MoveLeft = false; MoveUp = false; MoveDown = true;
+        bulletPosition.transform.position = new Vector3(spritePlayer.transform.position.x, 1, spritePlayer.transform.position.z - 0.5f);
+        arma.transform.position = new Vector3(spritePlayer.transform.position.x, 1, spritePlayer.transform.position.z - 0.25f);
     }
 
     void CallAim()
     {
         if (Input.GetAxisRaw("X360_RStickX01") < 0)
         {
-            MoveRight = false; MoveLeft = true; MoveUp = false; MoveDown = false;
-            bulletPosition.transform.position = new Vector3(spritePlayer.transform.position.x - 0.5f, 1, spritePlayer.transform.position.z);
-            arma.transform.position = new Vector3(spritePlayer.transform.position.x - 0.25f, 1, spritePlayer.transform.position.z);
+            AimingLeft();
         }
         if (Input.GetAxisRaw("X360_RStickX01") > 0)
         {
-            MoveRight = true; MoveLeft = false; MoveUp = false; MoveDown = false;
-            bulletPosition.transform.position = new Vector3(spritePlayer.transform.position.x + 0.5f, 1, spritePlayer.transform.position.z);
-            arma.transform.position = new Vector3(spritePlayer.transform.position.x + 0.25f, 1, spritePlayer.transform.position.z);
+            AimingRight();
         }
         if (Input.GetAxisRaw("X360_RStickY01") < 0)
         {
-            MoveRight = false; MoveLeft = false; MoveUp = true; MoveDown = false;
-            bulletPosition.transform.position = new Vector3(spritePlayer.transform.position.x, 1, spritePlayer.transform.position.z + 0.5f);
-            arma.transform.position = new Vector3(spritePlayer.transform.position.x, 1, spritePlayer.transform.position.z + 0.25f);
+            AimingUp();
         }
         if (Input.GetAxisRaw("X360_RStickY01") > 0)
         {
-            MoveRight = false; MoveLeft = false; MoveUp = false; MoveDown = true;
-            bulletPosition.transform.position = new Vector3(spritePlayer.transform.position.x, 1, spritePlayer.transform.position.z - 0.5f);
-            arma.transform.position = new Vector3(spritePlayer.transform.position.x, 1, spritePlayer.transform.position.z - 0.25f);
+            AimingDown();
         }
     }
 
@@ -142,14 +161,14 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "Ammo")
         {
-            ammo += 5;
-            ammoText.text = "x " + ammo;
+            //ammo += 5;
+            //ammoText.text = "x " + ammo;
             Destroy(other.gameObject);
         }
         else if (other.gameObject.tag == "Life")
         {
-            life += 1;
-            lifeText.text = "x " + life;
+            //life += 1;
+            //lifeText.text = "x " + life;
             Destroy(other.gameObject);
         }
     }
@@ -165,7 +184,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(GameObject enemy)
     {
         life -= 1;
-        lifeText.text = "x " + life;
+        //lifeText.text = "x " + life;
 
         Destroy(enemy);
 
@@ -176,15 +195,15 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
 
             //Verifica se os outros jogadores estÃ£o vivos ainda
-            if (player2.activeInHierarchy || player3.activeInHierarchy || player4.activeInHierarchy)
-            {
-                return;
-            }
-            else
-            {
-                //Executar game over
-                SceneManager.LoadScene("SceneDied");
-            }
+            //if (player2.activeInHierarchy || player3.activeInHierarchy || player4.activeInHierarchy)
+            //{
+            //    return;
+            //}
+            //else
+            //{
+            //    //Executar game over
+            //    SceneManager.LoadScene("SceneDied");
+            //}
         }
     }
 

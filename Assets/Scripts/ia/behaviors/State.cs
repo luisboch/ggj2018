@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class State {
 
-
+    protected State previousState;
     protected GameObject from;
     protected CharacterController fromCtrl;
     protected BasicObjectAttr fromAttr;
@@ -15,6 +15,11 @@ public abstract class State {
 
 
     public abstract int getCod();
+
+    public State setPrevious(State previous) {
+        this.previousState = previous;
+        return this;
+    }
     /**
      * Executed when state starts
      * @param obj
@@ -32,12 +37,12 @@ public abstract class State {
 
 
     public State setTarget(GameObject target) {
+        if (target != null) {
+            this.target = target;
 
-        this.target = target;
-
-        this.targetCtrl = target.GetComponent<CharacterController>();
-        this.targetAttr = target.GetComponent<BasicObjectAttr>();
-
+            this.targetCtrl = target.GetComponent<CharacterController>();
+            this.targetAttr = target.GetComponent<BasicObjectAttr>();
+        }
         return this;
     }
 

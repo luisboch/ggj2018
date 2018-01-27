@@ -2,23 +2,57 @@ using UnityEngine;
 
 public class PatrolState : State {
 
-    public Transform[] positions;
-    public bool rotate;
-    private int currIndex;
+    public GameObject[] patrolRoute;
+    public float attractDistance;
+    public float missPlayerDistance;
+
+    private int currentPoint = -1;
+    private bool goingNext = true;
+    public FollowState followState;
+
+    public PatrolState() {
+        this.followState = new FollowState().whenArrive((o) => this, null);
+    }
 
     public override int getCod() {
         return 7;
     }
 
-    public override State update(GameObject obj) {
-//        bool hasArrived = hasArrived();
-
-        //        int  next = nextIndex();
-
-        return this;
+    public override void start(GameObject obj) {
     }
 
-    private bool hasArrived() {
-        return false;
+    public override State update(GameObject from) {
+        Debug.Log("Current pos " + currentPoint + ", going next");
+        updateRouteIndex();
+        followState.setTarget(patrolRoute[currentPoint]);
+
+        return followState;
+    }
+
+    private void updateRouteIndex() {
+        if (goingNext)
+        {
+            if (currentPoint < patrolRoute.Length - 1)
+            {
+                currentPoint++;
+            }
+            else
+            {
+                goingNext = false;
+                currentPoint--;
+            }
+        }
+        else
+        {
+            if (currentPoint > 0)
+            {
+                currentPoint--;
+            }
+            else
+            {
+                goingNext = true;
+                currentPoint++;
+            }
+        }
     }
 }

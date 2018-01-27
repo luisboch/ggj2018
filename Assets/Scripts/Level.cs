@@ -24,12 +24,12 @@ public class Level : MonoBehaviour {
 
         if (zombieSpawnTimer <= 0)
         {
-            SpawnZombie();
+            //SpawnZombie();
         }
 
         if (powerUpSpawnTimer <= 0)
         {
-            SpawnPowerUp();
+            //SpawnPowerUp();
         }
 	}
 
