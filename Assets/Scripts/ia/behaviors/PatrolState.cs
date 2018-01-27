@@ -11,12 +11,11 @@ public class PatrolState : State {
     }
 
     public override State update(GameObject obj) {
-        bool hasArrived = hasArrived();
+//        bool hasArrived = hasArrived();
 
         //        int  next = nextIndex();
 
         return this;
-
     }
 
     private bool hasArrived() {
