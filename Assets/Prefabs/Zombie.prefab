@@ -41,6 +41,10 @@ GameObject:
   - component: {fileID: 195479624476834260}
   - component: {fileID: 54216163523464756}
   - component: {fileID: 114189719519025186}
+  - component: {fileID: 143612248481928400}
+  - component: {fileID: 114857668606599500}
+  - component: {fileID: 114923686661583792}
+  - component: {fileID: 114157805774990196}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Enemy
@@ -67,8 +71,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1881783901547396}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -5.71, y: 0.55000025, z: -1.6600002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4132675457067614}
@@ -143,6 +147,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3304459, y: 1, z: 0.3523984}
   m_Center: {x: 0.0054881573, y: 0, z: 0.0054881573}
+--- !u!114 &114157805774990196
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1881783901547396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 112f465c738974c04adf59d1dd77bb8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  patrolRoute:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114189719519025186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,6 +175,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lives: 3
+--- !u!114 &114857668606599500
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1881783901547396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd0ab8e530777491c9b7be3b043e9559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114923686661583792
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1881783901547396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ffd9c728801c46fdae3950bdf06272a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  viewLimit: 0
+  dangerViewAreaRadius: 1
+  viewAngle: 60
+  chanceToChangeDir: 0.01
+  chanceToChangeVel: 0.01
+  followLimit: 2
+  arriveDist: 1
+  velocity: 1
+  investigateWaitTime: 2
+--- !u!143 &143612248481928400
+CharacterController:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1881783901547396}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Height: 1.0000002
+  m_Radius: 0.5000001
+  m_SlopeLimit: 1
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &195479624476834260
 NavMeshAgent:
   m_ObjectHideFlags: 1

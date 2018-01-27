@@ -4078,92 +4078,29 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 4651307981386050, guid: 58bb223eab7f98041a5351aed02518b9, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4651307981386050, guid: 58bb223eab7f98041a5351aed02518b9, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 195479624476834260, guid: 58bb223eab7f98041a5351aed02518b9,
+    - target: {fileID: 114157805774990196, guid: 58bb223eab7f98041a5351aed02518b9,
         type: 2}
-      propertyPath: m_Speed
-      value: 0.2
-      objectReference: {fileID: 0}
+      propertyPath: patrolRoute.Array.data[0]
+      value: 
+      objectReference: {fileID: 1483339551}
+    - target: {fileID: 114157805774990196, guid: 58bb223eab7f98041a5351aed02518b9,
+        type: 2}
+      propertyPath: patrolRoute.Array.data[1]
+      value: 
+      objectReference: {fileID: 1861341132}
+    - target: {fileID: 114157805774990196, guid: 58bb223eab7f98041a5351aed02518b9,
+        type: 2}
+      propertyPath: patrolRoute.Array.data[2]
+      value: 
+      objectReference: {fileID: 1231692612}
+    - target: {fileID: 114157805774990196, guid: 58bb223eab7f98041a5351aed02518b9,
+        type: 2}
+      propertyPath: patrolRoute.Array.data[3]
+      value: 
+      objectReference: {fileID: 389083127}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 58bb223eab7f98041a5351aed02518b9, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1757975545 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1881783901547396, guid: 58bb223eab7f98041a5351aed02518b9,
-    type: 2}
-  m_PrefabInternal: {fileID: 1757975544}
---- !u!114 &1757975546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1757975545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd0ab8e530777491c9b7be3b043e9559, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1757975547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1757975545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ffd9c728801c46fdae3950bdf06272a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1
-  viewLimit: 0
-  dangerViewAreaRadius: 1
-  viewAngle: 60
-  chanceToChangeDir: 0.01
-  chanceToChangeVel: 0.01
-  followLimit: 2
-  arriveDist: 1
-  velocity: 1
-  investigateWaitTime: 2
---- !u!143 &1757975548
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1757975545}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 1.0000002
-  m_Radius: 0.5000001
-  m_SlopeLimit: 1
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1757975549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1757975545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 112f465c738974c04adf59d1dd77bb8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  patrolRoute:
-  - {fileID: 1483339551}
-  - {fileID: 1861341132}
-  - {fileID: 1231692612}
-  - {fileID: 389083127}
 --- !u!1 &1848455141
 GameObject:
   m_ObjectHideFlags: 0
