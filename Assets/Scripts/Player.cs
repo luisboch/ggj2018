@@ -179,6 +179,11 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
             disguised = true;
         }
+        else if (other.gameObject.tag == "Info")
+        {
+            Config.getInstance().UpdateCollectedInfos();
+            Destroy(other.gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

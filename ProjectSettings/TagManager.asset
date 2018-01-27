@@ -16,6 +16,7 @@ TagManager:
   - Player4
   - Player3
   - Disguise
+  - Info
   layers:
   - Default
   - TransparentFX
