@@ -22,7 +22,6 @@ public class EnemyView : MonoBehaviour {
                 float percent = dist / _lineOfSight.GetMaxDist();
 
                 bool alerted = percent < alertDistPercent;
-                Debug.Log("Dist=> " + dist + ", percent=> " + percent + ", alerted=>" + alerted);
                 if (alerted) {
                     _lineOfSight.SetStatus(LineOfSight.Status.Alerted);
                 } else {
