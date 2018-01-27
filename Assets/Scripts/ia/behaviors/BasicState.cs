@@ -83,13 +83,14 @@ public class BasicState : State {
 
         float diffAng = (from.transform.forward.normalized - diff).magnitude;
         bool visible = diffAng < (fromAttr.viewAngle / 180);
+
         if (visible) {
             var raycast = Physics2D.Raycast(from.transform.position, from.transform.position - target.transform.position);
             if (raycast && raycast.collider == target) {
                 return true;
             }
-
         }
+
         return false;
 
     }
