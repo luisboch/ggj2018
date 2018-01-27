@@ -37,12 +37,12 @@ public class Panel : MonoBehaviour {
     {
         
         if (inRange()) {
-            if (Input.GetAxisRaw("X360_Start") < 0)
+            if ((Input.GetAxisRaw("X360_A01") < 0)&& key_panel==true)
             {
                 key_panel = false;
             }   
             
-            if (Input.GetAxisRaw("X360_Back") < 0)
+            if ((Input.GetAxisRaw("X360_B01") < 0)&& key_panel == false)
             {
                 key_panel = true;
             }

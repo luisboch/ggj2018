@@ -79,7 +79,7 @@ public class Menu : MonoBehaviour {
                     {
                         if (positionMenu == PositionMenu.PLAY)
                         {
-                            SceneManager.LoadScene("MapSceneNavMesh");
+                            SceneManager.LoadScene("ManikaScene");
                         }
                         else if (positionMenu == PositionMenu.CREDITS)
                         {
