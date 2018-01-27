@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MuriloScene.unity
+    guid: d37a29e16a05d9e41858383943212f8c
+  - enabled: 1
+    path: Assets/Scenes/SceneBase.unity
+    guid: d67c9e5521a59425f956cf0c3ca1759f
