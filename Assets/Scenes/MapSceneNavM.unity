@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.03243945, g: 0.44117647, b: 0.1367378, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4105,6 +4105,7 @@ MonoBehaviour:
   lockMouse: 1
   hero: {fileID: 0}
   lightIsOn: 1
+  alert: 0
 --- !u!4 &1891975065
 Transform:
   m_ObjectHideFlags: 0
