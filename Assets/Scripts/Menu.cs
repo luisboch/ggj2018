@@ -43,8 +43,8 @@ public class Menu : MonoBehaviour {
         buttonNameCredits.SetActive(false);
         buttonNameCredits2.SetActive(false);
         logo.SetActive(false);
-        buttonNamePlayers.SetActive(true);
-        buttonNameZombies.SetActive(true);
+       
+        
         buttonNameShoot.SetActive(true);
         buttonNameAim.SetActive(true);
         buttonNameMove.SetActive(true);
@@ -79,7 +79,7 @@ public class Menu : MonoBehaviour {
                     {
                         if (positionMenu == PositionMenu.PLAY)
                         {
-                            SceneManager.LoadScene("ManikaScene");
+                            SceneManager.LoadScene("MapSceneNavMesh");
                         }
                         else if (positionMenu == PositionMenu.CREDITS)
                         {
@@ -135,8 +135,7 @@ public class Menu : MonoBehaviour {
         buttonNameCredits.SetActive(true);
         buttonNameCredits2.SetActive(true);
         logo.SetActive(true);
-        buttonNamePlayers.SetActive(false);
-        buttonNameZombies.SetActive(false);
+      
         buttonNameShoot.SetActive(false);
         buttonNameAim.SetActive(false);
         buttonNameMove.SetActive(false);
@@ -152,8 +151,7 @@ public class Menu : MonoBehaviour {
         buttonNameCredits.SetActive(false);
         buttonNameCredits2.SetActive(false);
         logo.SetActive(false);
-        buttonNamePlayers.SetActive(true);
-        buttonNameZombies.SetActive(true);
+       
         buttonNameShoot.SetActive(true);
         buttonNameAim.SetActive(true);
         buttonNameMove.SetActive(true);
