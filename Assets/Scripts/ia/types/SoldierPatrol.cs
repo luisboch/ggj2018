@@ -4,9 +4,11 @@ using UnityEngine.AI;
 public class SoldierPatrol : MonoBehaviour {
 
     public GameObject[] patrolRoute;
+    private BasicObjectAttr fromAttr;
 
     void Start() {
 
+        fromAttr = GetComponent<BasicObjectAttr>();
         FSMManager manager = GetComponent<FSMManager>();
 
         RandomState search = new RandomState();
@@ -26,9 +28,16 @@ public class SoldierPatrol : MonoBehaviour {
                 (o) => {
                     investigateState.setTargetPos(o.transform.position);
                     investigateState.SetDoWhenArrive((s) => {
-                        // Alert view GOTCHA.
-                        Debug.LogError("GOTCHA");
-                        return null;
+
+                        Collider[] coll = Physics.OverlapSphere(gameObject.transform.position, fromAttr.dangerViewAreaRadius);
+                        foreach (Collider c in coll) {
+                            if (c.tag.Equals("Player")) {
+                                Debug.LogError("GOTCHA");
+                                return null;
+                            }
+                        }
+
+                        return patrol;
                     });
 
                     return investigateState;
