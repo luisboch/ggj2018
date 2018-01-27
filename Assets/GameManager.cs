@@ -7,11 +7,9 @@ public class GameManager : MonoBehaviour {
     
 	void Start () 
     {
-
         Config.getInstance().LoadInfosScene();
-
-       
 	}
+
 	
 	
 }

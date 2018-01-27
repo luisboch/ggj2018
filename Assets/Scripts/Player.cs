@@ -183,6 +183,8 @@ public class Player : MonoBehaviour
         {
             Config.getInstance().UpdateCollectedInfos();
             Destroy(other.gameObject);
+            if (Config.getInstance().IsAllInfosCollected())
+                Debug.Log("All infos collected!!!");
         }
     }
 

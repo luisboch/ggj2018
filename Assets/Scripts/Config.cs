@@ -9,9 +9,9 @@ public class Config : MonoBehaviour {
     public GameObject hero;
     public bool lightIsOn = true;
     public bool _alert = false;
-    public List<GameObject> infos = new List<GameObject>();
-    public int collectedInfos;
-    public int infosCountScene;
+    private List<GameObject> infos = new List<GameObject>();
+    private static int collectedInfos;
+    private static int infosCountScene;
 
     public bool alert {
         get {
@@ -33,11 +33,6 @@ public class Config : MonoBehaviour {
         }
     }
 
-    void Start()
-    {
-        collectedInfos = 0;
-        infosCountScene = 0;
-    }
 
     // Update is called once per frame
     void Update() {
@@ -53,25 +48,35 @@ public class Config : MonoBehaviour {
     public static Config getInstance() {
         if (instance == null) {
             instance = new Config();
-            Debug.LogWarning("No Config found, using default!");
+            //Debug.LogWarning("No Config found, using default!");
         }
         return instance;
     }
 
     public void LoadInfosScene()
     {
+        infosCountScene = 0;
+        collectedInfos = 0;
         infos.Clear();
+
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Info");
         foreach(GameObject o in objs)
         {
             infos.Add(o);
         }
-        infosCountScene = infos.Count;
+        infosCountScene = infos.Count; 
+        Debug.Log("Infos total:  "+infosCountScene);
     }
 
     public void UpdateCollectedInfos()
     {
         collectedInfos++;
+        Debug.Log("Collected:  " + collectedInfos);
+    }
+
+    public bool IsAllInfosCollected()
+    {
+        return infosCountScene > 0 && collectedInfos >= infosCountScene;
     }
 
 }
