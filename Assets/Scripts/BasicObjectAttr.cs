@@ -15,21 +15,19 @@ public class BasicObjectAttr : MonoBehaviour, IEventSystemHandler {
     public float followLimit = 30f;
     public float arriveDist = 5f;
 
-    public int animAttackForce = 1;
-
-    public int coinQuantity = 0;
-
     void Start() {
+    }
+
+    void OnDrawGizmos() {
+
+        if (dangerViewAreaRadius != null) {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, dangerViewAreaRadius);
+        }
     }
 
     public bool? isAlive() {
         return health > 0;
-    }
-
-    public bool? addCoin(int qty) {
-        Debug.Log("Adding coin");
-        this.coinQuantity += qty;
-        return  true;
     }
 
     public int? getHealth() {
@@ -40,14 +38,5 @@ public class BasicObjectAttr : MonoBehaviour, IEventSystemHandler {
         return viewLimit;
     }
 
-    public IEnumerable takeHit(int force) {
-        this.health -= force;
-        yield return  null;
-    }
-
-
-    public int? getAnimAttackForce() {
-        return this.animAttackForce;
-    }
 
 }

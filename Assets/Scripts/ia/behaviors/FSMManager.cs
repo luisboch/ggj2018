@@ -9,6 +9,7 @@ public class FSMManager : MonoBehaviour, IEventSystemHandler {
 
     protected List<State> states = new List<State>();
     protected State currentState;
+    protected BasicState basicState = new BasicState();
 
     private static int MAX_MEM_STATES = 5;
     private BasicObjectAttr attributes;
@@ -55,7 +56,7 @@ public class FSMManager : MonoBehaviour, IEventSystemHandler {
 
         states.Remove(currentState);
 
-        if(states.Count > 0){
+        if (states.Count > 0) {
             this.currentState = states[states.Count - 1];
         }
 
@@ -66,11 +67,11 @@ public class FSMManager : MonoBehaviour, IEventSystemHandler {
     }
 
     public void receiveHit(GameObject from, int force) {
-//        Attack attack = new Attack();
-//
-//        if (this.currentState == null || this.currentState.getCod() != attack.getCod() ) {
-//            setCurrentState(attack.setTarget(from));
-//        }
+        //        Attack attack = new Attack();
+        //
+        //        if (this.currentState == null || this.currentState.getCod() != attack.getCod() ) {
+        //            setCurrentState(attack.setTarget(from));
+        //        }
     }
 
 
@@ -93,13 +94,16 @@ public class FSMManager : MonoBehaviour, IEventSystemHandler {
         }
 
 
-//        Debug.Log("Alive?" + attributes.isAlive().GetValueOrDefault(true));
+        //        Debug.Log("Alive?" + attributes.isAlive().GetValueOrDefault(true));
 
         if (!attributes.isAlive().GetValueOrDefault(true)) {
             currentState = null;
             // Object was killed.
-//            gameObject.Send<IAnimalAnimatorHelper>((_ => _.die()));
+            //            gameObject.Send<IAnimalAnimatorHelper>((_ => _.die()));
         }
     }
 
+    public BasicState GetBasicState() {
+        return basicState;
+    }
 }

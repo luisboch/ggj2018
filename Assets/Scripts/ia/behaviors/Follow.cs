@@ -16,7 +16,7 @@ public class Follow : State {
         return 3;
     }
 
-    public Follow config(EventAction whenArrive, GameObject target) {
+    public Follow whenArrive(EventAction whenArrive, GameObject target) {
         this.nextAction = whenArrive;
         setTarget(target);
         return this;
