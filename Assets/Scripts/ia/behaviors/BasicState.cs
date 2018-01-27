@@ -55,18 +55,17 @@ public class BasicState : State {
             return null;
         }
 
-        if (_lineOfSight.SeeByTag("Player")) {
-            List<GameObject> inFView = _lineOfSight.getViewing();
+        foreach (string tag in this.searchTags) {
 
-            foreach (GameObject c in inFView) {
-                if ( this.searchTags.Contains(c.tag)) {
+            if (_lineOfSight.SeeByTag(tag)) {
+                List<GameObject> inFView = _lineOfSight.getViewing();
+                foreach (GameObject c in inFView) {
                     State n = notify(c.gameObject, _lineOfSight.GetStatus().Equals(LineOfSight.Status.Alerted));
                     if (n != null) {
                         manager.setCurrentState(n);
                     }
                 }
             }
-
         }
 
         return this;

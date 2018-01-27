@@ -4,11 +4,12 @@ public class IdleState : State {
 
     private EventAction nextAction;
     public float time = -1;
+    private float timeRemaining;
     public bool isInfinite = true;
 
     public override void start(GameObject obj) {
         base.start(obj);
-        this.isInfinite = time > 0;
+        this.timeRemaining = time;
     }
 
     public IdleState onComplete(EventAction nextAction) {
@@ -18,7 +19,10 @@ public class IdleState : State {
 
     public override State update(GameObject obj) {
         if (!isInfinite  ) {
-            if (time < 0) {
+
+            timeRemaining -= Time.deltaTime;
+
+            if (timeRemaining < 0) {
                 return nextAction == null ? null : nextAction.Invoke(from);
             }
         }

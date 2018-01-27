@@ -6,6 +6,7 @@ public class SoldierPatrol : MonoBehaviour {
     public GameObject[] patrolRoute;
 
     void Start() {
+
         FSMManager manager = GetComponent<FSMManager>();
 
         RandomState search = new RandomState();

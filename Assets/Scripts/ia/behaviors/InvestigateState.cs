@@ -6,6 +6,7 @@ public class InvestigateState : State {
     public Vector3 targetPos;
     private LineOfSight lineOfSight;
     private EventAction doWhenArrive;
+    private NavMeshAgent navAgent;
 
     public InvestigateState() {
     }
@@ -23,6 +24,7 @@ public class InvestigateState : State {
     public override void start(GameObject obj) {
         base.start(obj);
         lineOfSight = from.GetComponentInChildren<LineOfSight>();
+        this.navAgent = from.GetComponent<NavMeshAgent>();
     }
 
     public override int getCod() {
@@ -52,7 +54,6 @@ public class InvestigateState : State {
         }
 
         //        obj.transform.LookAt(target.transform.position);/
-        NavMeshAgent navAgent = from.GetComponent<NavMeshAgent>();
         if (navAgent) {
             navAgent.destination = targetPos;
             navAgent.speed = lineOfSight.GetStatus().Equals(LineOfSight.Status.Alerted) ? fromAttr.alertVelocity : fromAttr.velocity;
