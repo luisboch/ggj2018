@@ -7,12 +7,19 @@ public class BasicState : State {
     private List<string> searchTags = new List<string>();
     private FSMManager manager;
     private Config _config;
+    private LineOfSight _lineOfSight;
+
 
     public BasicState(FSMManager manager) {
         this.manager = manager;
         this.from = manager.gameObject;
         this.fromAttr = manager.GetComponent<BasicObjectAttr>();
         this._config = Config.getInstance();
+    }
+
+    public override void start(GameObject obj) {
+        base.start(obj);
+        _lineOfSight = from.GetComponentInChildren<LineOfSight>();
     }
 
     public override int getCod() {
@@ -49,53 +56,21 @@ public class BasicState : State {
         }
 
 
-        Collider2D[] cs = Physics2D.OverlapCircleAll(obj.transform.position, fromAttr.dangerViewAreaRadius);
+        if (_lineOfSight.SeeByTag("Player")) {
+            List<GameObject> inFView = _lineOfSight.getViewing();
 
-
-        foreach (Collider2D c in cs) {
-            if ( this.searchTags.Contains(c.tag)
-            && isVisible(c)) {
-                State n = notify(c.gameObject, true);
-                if (n != null) {
-                    manager.setCurrentState(n);
+            foreach (GameObject c in inFView) {
+                if ( this.searchTags.Contains(c.tag)) {
+                    State n = notify(c.gameObject, _lineOfSight.GetStatus().Equals(LineOfSight.Status.Alerted));
+                    if (n != null) {
+                        manager.setCurrentState(n);
+                    }
                 }
             }
+
         }
-
-        cs = Physics2D.OverlapCircleAll(obj.transform.position, fromAttr.viewLimit);
-
-        foreach (Collider2D c in cs) {
-            if ( this.searchTags.Contains(c.tag)
-            && isVisible(c)) {
-                State n = notify(c.gameObject, false);
-                if (n != null) {
-                    manager.setCurrentState(n);
-                }
-            }
-        }
-
-
 
         return this;
-    }
-
-
-    private bool isVisible(Collider2D target) {
-
-        var diff = (target.transform.position - from.transform.position).normalized;
-
-        float diffAng = (from.transform.forward.normalized - diff).magnitude;
-        bool visible = diffAng < (fromAttr.viewAngle / 180);
-
-        if (visible) {
-            var raycast = Physics2D.Raycast(from.transform.position, from.transform.position - target.transform.position);
-            if (raycast && raycast.collider == target) {
-                return true;
-            }
-        }
-
-        return false;
-
     }
 
 
@@ -103,13 +78,7 @@ public class BasicState : State {
         foreach (SearchConf c in this.searchConfig) {
             if (c.searchTypes.Contains(gameObject0.tag)) {
 
-                Player player = gameObject0.GetComponent<Player>();
-
-                if(player.disguised && !dangerArea && !_config.alert){
-                    return null;
-                }
-
-                if (_config.alert) {
+                if (_config.alert || dangerArea) {
                     return c.doWhenAlert.Invoke(gameObject0);
                 }
 

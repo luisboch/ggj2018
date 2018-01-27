@@ -16,6 +16,7 @@ public class FSMManager : MonoBehaviour, IEventSystemHandler {
 
     void Awake() {
         basicState = new BasicState(this);
+        basicState.start(this.gameObject);
         attributes = GetComponent<BasicObjectAttr>();
     }
 

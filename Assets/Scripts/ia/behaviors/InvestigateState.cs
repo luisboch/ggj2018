@@ -1,19 +1,22 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class InvestigateState : State {
 
     public Vector3 targetPos;
+    private LineOfSight lineOfSight;
 
     public InvestigateState() {
     }
 
-    public State setTargetPos(Vector3 pos){
+    public State setTargetPos(Vector3 pos) {
         this.targetPos = pos;
         return this;
     }
 
     public override void start(GameObject obj) {
         base.start(obj);
+        lineOfSight = from.GetComponentInChildren<LineOfSight>();
     }
 
     public override int getCod() {
@@ -25,7 +28,7 @@ public class InvestigateState : State {
         float dist = Vector3.Distance(targetPos, obj.transform.position);
 
 
-       if (dist < (fromAttr.arriveDist + (fromCtrl.radius) + (targetCtrl == null ? 0 : targetCtrl.radius) )) {
+        if (dist < (fromAttr.arriveDist + (fromCtrl.radius) + (targetCtrl == null ? 0 : targetCtrl.radius) )) {
 
             // We arrive to destination
             IdleState state = new IdleState();
@@ -39,15 +42,18 @@ public class InvestigateState : State {
         }
 
         //        obj.transform.LookAt(target.transform.position);/
-
-        Vector3 def = target.transform.position - obj.transform.position;
-
-        obj.transform.position += (def.normalized * fromAttr.velocity * Time.deltaTime);
-
+        NavMeshAgent navAgent = from.GetComponent<NavMeshAgent>();
+        if (navAgent) {
+            navAgent.destination = targetPos;
+            navAgent.speed = lineOfSight.GetStatus().Equals(LineOfSight.Status.Alerted) ? fromAttr.alertVelocity : fromAttr.velocity;
+        } else {
+            Vector3 def = targetPos - obj.transform.position;
+            obj.transform.position += (def.normalized * fromAttr.velocity * Time.deltaTime);
+        }
         return this;
     }
 
     public override string ToString() {
-        return "FOLLOW";
+        return "INVESTIGATE";
     }
 }

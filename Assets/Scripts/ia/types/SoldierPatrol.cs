@@ -18,10 +18,15 @@ public class SoldierPatrol : MonoBehaviour {
         patrol.patrolRoute = patrolRoute;
         patrol.setAgent(GetComponent<NavMeshAgent>());
         manager.GetBasicState().configure("Player",
-                o => investigateState.setTargetPos(o.transform.position), (o) => {
+                (o) => {
+                    investigateState.setTargetPos(o.transform.position);
+                    return investigateState;
+                },
+                (o) => {
+                    investigateState.setTargetPos(o.transform.position);
                     // Alert view GOTCHA.
                     Debug.LogError("GOTCHA");
-                    return null;
+                    return investigateState;
                 });
         manager.setCurrentState(patrol);
     }
