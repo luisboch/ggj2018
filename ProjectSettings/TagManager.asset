@@ -3,7 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Player1
+  - Life
+  - Enemy
+  - Bullet
+  - Ammo
+  - parede
+  - AmmoStatus
+  - LifeStatus
+  - Player2
+  - Player4
+  - Player3
+  - Disguise
   layers:
   - Default
   - TransparentFX

@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     public GameObject spritePlayer;
     public GameObject arma;
 
+    public bool disguised = false;
 
     private float life = 4;
     private int ammo = 10;
@@ -170,6 +171,13 @@ public class Player : MonoBehaviour
             //life += 1;
             //lifeText.text = "x " + life;
             Destroy(other.gameObject);
+        }
+        else if (other.gameObject.tag == "Disguise")
+        {
+            DisguiseBox disguise = other.gameObject.GetComponent<DisguiseBox>();
+            spritePlayer.GetComponent<SpriteRenderer>().sprite = disguise.sprite;
+            Destroy(other.gameObject);
+            disguised = true;
         }
     }
 
