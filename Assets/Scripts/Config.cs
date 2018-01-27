@@ -7,6 +7,7 @@ public class Config : MonoBehaviour {
     public bool lockMouse = true;
     public GameObject hero;
     public bool lightIsOn = true;
+    public bool alert = false;
 
     // Use this for initialization
     void Awake() {

@@ -3,22 +3,24 @@ using UnityEngine;
 
 public class BasicState : State {
 
-    private List<Config> searchConfig = new List<Config>();
+    private List<SearchConf> searchConfig = new List<SearchConf>();
     private List<string> searchTags = new List<string>();
     private FSMManager manager;
+    private Config _config;
 
     public BasicState(FSMManager manager) {
         this.manager = manager;
         this.from = manager.gameObject;
         this.fromAttr = manager.GetComponent<BasicObjectAttr>();
+        this._config = Config.getInstance();
     }
 
     public override int getCod() {
         return 6;
     }
 
-    public BasicState config(string lookingType, EventAction doWhenLocate) {
-        this.searchConfig.Add(new Config(lookingType, doWhenLocate));
+    public BasicState configure(string lookingType, EventAction doWhenLocate, EventAction doWhenAlert) {
+        this.searchConfig.Add(new SearchConf(lookingType, doWhenLocate, doWhenAlert));
         this.searchTags.Clear();
 
 
@@ -46,18 +48,32 @@ public class BasicState : State {
             return null;
         }
 
-        Collider2D[] cs = Physics2D.OverlapCircleAll(obj.transform.position, fromAttr.viewLimit);
+
+        Collider2D[] cs = Physics2D.OverlapCircleAll(obj.transform.position, fromAttr.dangerViewAreaRadius);
 
 
         foreach (Collider2D c in cs) {
             if ( this.searchTags.Contains(c.tag)
             && isVisible(c)) {
-                State n = notify(c.gameObject);
+                State n = notify(c.gameObject, true);
                 if (n != null) {
                     manager.setCurrentState(n);
                 }
             }
         }
+
+        cs = Physics2D.OverlapCircleAll(obj.transform.position, fromAttr.viewLimit);
+
+        foreach (Collider2D c in cs) {
+            if ( this.searchTags.Contains(c.tag)
+            && isVisible(c)) {
+                State n = notify(c.gameObject, false);
+                if (n != null) {
+                    manager.setCurrentState(n);
+                }
+            }
+        }
+
 
 
         return this;
@@ -83,10 +99,21 @@ public class BasicState : State {
     }
 
 
-    private State notify(GameObject gameObject0) {
-        foreach (Config c in this.searchConfig) {
+    private State notify(GameObject gameObject0, bool dangerArea) {
+        foreach (SearchConf c in this.searchConfig) {
             if (c.searchTypes.Contains(gameObject0.tag)) {
-                return c.doWhenLocate.Invoke(gameObject0);
+
+                Player player = gameObject0.GetComponent<Player>();
+
+                if(player.disguised && !dangerArea && !_config.alert){
+                    return null;
+                }
+
+                if (_config.alert) {
+                    return c.doWhenAlert.Invoke(gameObject0);
+                }
+
+                return c.doWhenView.Invoke(gameObject0);
             }
         }
 
@@ -100,18 +127,24 @@ public class BasicState : State {
     }
 
 
-    public class Config {
+    public class SearchConf {
 
         public List<string> searchTypes = new List<string>();
-        public EventAction doWhenLocate;
+        public EventAction doWhenView;
+        public EventAction doWhenAlert;
 
-        public Config(string searchType, EventAction doWhenLocate) {
+        public SearchConf(string searchType, EventAction doWhenLocate, EventAction doWhenAlert) {
             this.searchTypes.Add(searchType);
-            this.doWhenLocate = doWhenLocate;
+            this.doWhenView = doWhenLocate;
+            this.doWhenAlert = doWhenAlert;
         }
 
         public EventAction getDoWhenLocate() {
-            return doWhenLocate;
+            return doWhenView;
+        }
+
+        public EventAction getDoWhenAlert() {
+            return this.doWhenAlert;
         }
 
         public List<string> getSearchClass() {

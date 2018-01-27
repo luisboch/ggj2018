@@ -16,8 +16,11 @@ public class BasicFSMConfig : MonoBehaviour {
                     When arrive -> eat it;
          */
         manager.GetBasicState()
-        .config("Food",
-                o => follow.whenArrive((e) => eat.setToEat(e).setAfterEat((s) => search), o));
+        .configure("Food",
+                o => follow.whenArrive((e) => eat.setToEat(e).setAfterEat((s) => search), o), (o) => {
+                    Debug.LogError("GOTCHA");
+                    return null;
+                });
 
         /**
             Search for "player"

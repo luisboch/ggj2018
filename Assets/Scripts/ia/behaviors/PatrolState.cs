@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PatrolState : State {
 
@@ -8,25 +9,40 @@ public class PatrolState : State {
 
     private int currentPoint = -1;
     private bool goingNext = true;
-    public FollowState followState;
+    public NavMeshAgent agent;
 
     public PatrolState() {
-        this.followState = new FollowState().whenArrive((o) => this, null);
     }
 
     public override int getCod() {
         return 7;
     }
 
+    public PatrolState setAgent(NavMeshAgent agent) {
+        this.agent = agent;
+        return this;
+    }
+
     public override void start(GameObject obj) {
+        base.start(obj);
+        updateRouteIndex();
     }
 
     public override State update(GameObject from) {
-        Debug.Log("Current pos " + currentPoint + ", going next");
-        updateRouteIndex();
-        followState.setTarget(patrolRoute[currentPoint]);
 
-        return followState;
+
+        float dist = Vector3.Distance(patrolRoute[currentPoint].transform.position, from.transform.position);
+
+        if (dist < (fromAttr.arriveDist + (fromCtrl.radius) + (targetCtrl == null ? 0 : targetCtrl.radius) )) {
+            updateRouteIndex();
+
+        }
+
+        if (agent) {
+            agent.destination = patrolRoute[currentPoint].transform.position;
+        }
+
+        return this;
     }
 
     private void updateRouteIndex() {

@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SoldierPatrol : MonoBehaviour {
 
@@ -16,7 +16,13 @@ public class SoldierPatrol : MonoBehaviour {
 
 
         patrol.patrolRoute = patrolRoute;
-        manager.GetBasicState().config("Player", o => investigateState.setTargetPos(o.transform.position));
+        patrol.setAgent(GetComponent<NavMeshAgent>());
+        manager.GetBasicState().configure("Player",
+                o => investigateState.setTargetPos(o.transform.position), (o) => {
+                    // Alert view GOTCHA.
+                    Debug.LogError("GOTCHA");
+                    return null;
+                });
         manager.setCurrentState(patrol);
     }
 }

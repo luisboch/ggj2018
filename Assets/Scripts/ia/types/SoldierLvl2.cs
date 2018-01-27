@@ -9,10 +9,13 @@ public class SoldierLvl2 : MonoBehaviour {
         IdleState idle = new IdleState();
 
         manager.setCurrentState(idle);
-        manager.GetBasicState().config("Player",
+        manager.GetBasicState().configure("Player",
                 o => follow.whenArrive((s) => {
-                   // What we do when arrive?
+                    // What we do when arrive?
                     return null;
-                }, o));
+                }, o), (o) => {
+                    Debug.LogError("GOTCHA");
+                    return null;
+                });
     }
 }
