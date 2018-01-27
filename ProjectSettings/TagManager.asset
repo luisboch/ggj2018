@@ -4,23 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Player1
-  - Life
-  - Enemy
-  - Bullet
-  - Ammo
-  - parede
-  - AmmoStatus
-  - LifeStatus
-  - Player2
-  - Player4
-  - Player3
-  - Disguise
-<<<<<<< Updated upstream
   - Info
-=======
-  - Debug
->>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
