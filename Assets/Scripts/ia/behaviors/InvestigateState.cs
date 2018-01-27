@@ -5,11 +5,17 @@ public class InvestigateState : State {
 
     public Vector3 targetPos;
     private LineOfSight lineOfSight;
+    private EventAction doWhenArrive;
 
     public InvestigateState() {
     }
 
-    public State setTargetPos(Vector3 pos) {
+    public InvestigateState SetDoWhenArrive(EventAction action) {
+        this.doWhenArrive = action;
+        return this;
+    }
+
+    public InvestigateState setTargetPos(Vector3 pos) {
         this.targetPos = pos;
         return this;
     }
@@ -29,6 +35,10 @@ public class InvestigateState : State {
 
 
         if (dist < (fromAttr.arriveDist + (fromCtrl.radius) + (targetCtrl == null ? 0 : targetCtrl.radius) )) {
+
+            if (this.doWhenArrive != null) {
+                return this.doWhenArrive.Invoke(null);
+            }
 
             // We arrive to destination
             IdleState state = new IdleState();

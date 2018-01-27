@@ -7,7 +7,20 @@ public class Config : MonoBehaviour {
     public bool lockMouse = true;
     public GameObject hero;
     public bool lightIsOn = true;
-    public bool alert = false;
+    public bool _alert = false;
+
+    public bool alert {
+        get {
+            return _alert;
+        }
+        set {
+            _alert = value;
+            remainingAlertTime = alertTime;
+        }
+    }
+
+    public float alertTime = 15f;
+    private float remainingAlertTime;
 
     // Use this for initialization
     void Awake() {
@@ -18,6 +31,15 @@ public class Config : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+
+        if (remainingAlertTime > 0) {
+            remainingAlertTime -= Time.deltaTime;
+        } else if (this._alert) {
+            this._alert = false;
+            remainingAlertTime = -1;
+        }
+
+        Debug.Log("Alert: " + alert);
 
     }
 

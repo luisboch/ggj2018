@@ -16,8 +16,16 @@ public class LineOfSight : MonoBehaviour {
     private int _quality = 4;
     [SerializeField, RangeAttribute(1, 361), Tooltip("Maximum angle of viewing area")]
     private int _maxAngle = 90;
+
+    [SerializeField, RangeAttribute(1, 361), Tooltip("Maximum angle of viewing area")]
+    private int _alertAngle = 90;
+
     [SerializeField, Tooltip("Maximum viewing distance")]
     private float _maxDistance = 15;
+
+    [SerializeField, Tooltip("Maximum viewing distance")]
+    private float _alertDistance = 30;
+
     [SerializeField, Tooltip("Layers of objects which are not transparent for viewing")]
     private LayerMask _cullingMask = -1;
 
@@ -36,6 +44,7 @@ public class LineOfSight : MonoBehaviour {
     private bool _displayRaysInEditor = false;
     List<GameObject> viewing = new List<GameObject>();
 
+    private Config _config;
     //////////////////////////
 /// PUBLIC METHODS
     //////////////////////////
@@ -46,6 +55,9 @@ public class LineOfSight : MonoBehaviour {
     /// <param name="status"></param>
     public void SetStatus(Status status) {
         _currentStatus = status;
+        if(status.Equals(Status.Alerted)){
+            _config.alert = true;
+        }
     }
 
     /// <summary>
@@ -65,7 +77,7 @@ public class LineOfSight : MonoBehaviour {
         viewing = new List<GameObject>();
         return _hits.Any(hit => {
             bool isTag = hit.transform && hit.transform.tag == tagName;
-            if (hit.collider) {
+            if (hit.collider && isTag) {
                 viewing.Add(hit.collider.gameObject);
             }
             return isTag;
@@ -105,6 +117,7 @@ public class LineOfSight : MonoBehaviour {
         _mesh = GetComponent<MeshFilter>().mesh;
         _meshRenderer = GetComponent<MeshRenderer>();
         _meshRenderer.material = GetMaterialForStatus(_currentStatus);
+        _config = Config.getInstance();
     }
 
     private void Update() {
@@ -132,8 +145,11 @@ public class LineOfSight : MonoBehaviour {
 
     private void CastRays() {
 
-        int numberOfRays = _maxAngle * _quality;
-        float currentAngle = _maxAngle / -2.0f;
+        int angle = _config.alert ? _alertAngle:_maxAngle;
+        float distance = _config.alert ? _alertDistance : _maxDistance;
+
+        int numberOfRays = angle * _quality;
+        float currentAngle = angle / -2.0f;
 
         _hits.Clear();
 
@@ -141,7 +157,7 @@ public class LineOfSight : MonoBehaviour {
             Vector3 direction = Quaternion.AngleAxis(currentAngle, transform.up) * transform.forward;
             RaycastHit hit;
 
-            if (Physics.Raycast(transform.position, direction, out hit, _maxDistance, _cullingMask) == false)
+            if (Physics.Raycast(transform.position, direction, out hit, distance, _cullingMask) == false)
             {
                 hit.point = transform.position + (direction * _maxDistance);
             }

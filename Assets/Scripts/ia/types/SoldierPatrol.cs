@@ -19,13 +19,17 @@ public class SoldierPatrol : MonoBehaviour {
         patrol.setAgent(GetComponent<NavMeshAgent>());
         manager.GetBasicState().configure("Player",
                 (o) => {
-                    investigateState.setTargetPos(o.transform.position);
+                    investigateState.setTargetPos(o.transform.position).SetDoWhenArrive(null);
                     return investigateState;
                 },
                 (o) => {
                     investigateState.setTargetPos(o.transform.position);
-                    // Alert view GOTCHA.
-                    Debug.LogError("GOTCHA");
+                    investigateState.SetDoWhenArrive((s) => {
+                        // Alert view GOTCHA.
+                        Debug.LogError("GOTCHA");
+                        return null;
+                    });
+
                     return investigateState;
                 });
         manager.setCurrentState(patrol);

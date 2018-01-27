@@ -55,7 +55,6 @@ public class BasicState : State {
             return null;
         }
 
-
         if (_lineOfSight.SeeByTag("Player")) {
             List<GameObject> inFView = _lineOfSight.getViewing();
 
