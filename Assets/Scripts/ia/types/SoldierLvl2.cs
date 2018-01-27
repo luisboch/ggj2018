@@ -11,7 +11,7 @@ public class SoldierLvl2 : MonoBehaviour {
         manager.setCurrentState(idle);
         manager.GetBasicState().config("Player",
                 o => follow.whenArrive((s) => {
-                    // What we do when arrive?
+                   // What we do when arrive?
                     return null;
                 }, o));
     }

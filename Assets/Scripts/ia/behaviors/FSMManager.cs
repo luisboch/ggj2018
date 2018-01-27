@@ -23,7 +23,7 @@ public class FSMManager : MonoBehaviour, IEventSystemHandler {
     }
 
     public void setCurrentState(State next) {
-
+        State previous = null;
         if (next == null) {
             this.currentState = null;
             return;
@@ -40,9 +40,12 @@ public class FSMManager : MonoBehaviour, IEventSystemHandler {
 
         if (this.currentState != null) {
             states.Add(this.currentState);
+            previous = this.currentState;
         }
 
         this.currentState = next;
+        this.currentState.setPrevious(previous);
+
         // Initialize the state.
         this.currentState.start(gameObject);
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class State {
 
-
+    protected State previousState;
     protected GameObject from;
     protected CharacterController fromCtrl;
     protected BasicObjectAttr fromAttr;
@@ -15,6 +15,11 @@ public abstract class State {
 
 
     public abstract int getCod();
+
+    public State setPrevious(State previous) {
+        this.previousState = previous;
+        return this;
+    }
     /**
      * Executed when state starts
      * @param obj

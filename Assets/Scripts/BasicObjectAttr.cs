@@ -15,6 +15,7 @@ public class BasicObjectAttr : MonoBehaviour, IEventSystemHandler {
     public float followLimit = 30f;
     public float arriveDist = 5f;
     public float velocity = 1f;
+    public float investigateWaitTime = 2f;
 
     void Start() {
     }

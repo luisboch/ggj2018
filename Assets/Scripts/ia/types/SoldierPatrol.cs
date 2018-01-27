@@ -12,12 +12,11 @@ public class SoldierPatrol : MonoBehaviour {
         FollowState follow = new FollowState();
         IdleState idle = new IdleState();
         PatrolState patrol = new PatrolState();
+        InvestigateState investigateState = new InvestigateState();
+
+
         patrol.patrolRoute = patrolRoute;
-        manager.GetBasicState().config("Player",
-                o => follow.whenArrive((s) => {
-                    // What we do when arrive?
-                    return null;
-                }, o));
+        manager.GetBasicState().config("Player", o => investigateState.setTargetPos(o.transform.position));
         manager.setCurrentState(patrol);
     }
 }
