@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class BasicObjectAttr : MonoBehaviour, IEventSystemHandler {
 
-    public int health;
+    public int health = 1;
 
     public float viewLimit;
 
@@ -14,6 +14,7 @@ public class BasicObjectAttr : MonoBehaviour, IEventSystemHandler {
     public float chanceToChangeVel = 0.01f;
     public float followLimit = 30f;
     public float arriveDist = 5f;
+    public float velocity = 1f;
 
     void Start() {
     }

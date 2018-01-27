@@ -9,12 +9,13 @@ public class FSMManager : MonoBehaviour, IEventSystemHandler {
 
     protected List<State> states = new List<State>();
     protected State currentState;
-    protected BasicState basicState = new BasicState();
+    protected BasicState basicState;
 
     private static int MAX_MEM_STATES = 5;
     private BasicObjectAttr attributes;
 
-    void Start() {
+    void Awake() {
+        basicState = new BasicState(this);
         attributes = GetComponent<BasicObjectAttr>();
     }
 
@@ -76,6 +77,10 @@ public class FSMManager : MonoBehaviour, IEventSystemHandler {
 
 
     void Update() {
+
+
+        // Always invoke basic state.
+        this.basicState.update(gameObject);
 
         // No behavior?
         if (currentState != null) {

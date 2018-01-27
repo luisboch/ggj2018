@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SoliderLvl1 : MonoBehaviour {
+public class SoldierLvl1 : MonoBehaviour {
     void Start() {
         FSMManager manager = GetComponent<FSMManager>();
 

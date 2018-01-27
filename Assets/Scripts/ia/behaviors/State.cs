@@ -32,12 +32,12 @@ public abstract class State {
 
 
     public State setTarget(GameObject target) {
+        if (target != null) {
+            this.target = target;
 
-        this.target = target;
-
-        this.targetCtrl = target.GetComponent<CharacterController>();
-        this.targetAttr = target.GetComponent<BasicObjectAttr>();
-
+            this.targetCtrl = target.GetComponent<CharacterController>();
+            this.targetAttr = target.GetComponent<BasicObjectAttr>();
+        }
         return this;
     }
 

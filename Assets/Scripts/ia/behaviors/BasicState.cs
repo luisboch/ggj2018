@@ -5,7 +5,17 @@ public class BasicState : State {
 
     private List<Config> searchConfig = new List<Config>();
     private List<string> searchTags = new List<string>();
+    private FSMManager manager;
 
+    public BasicState(FSMManager manager) {
+        this.manager = manager;
+        this.from = manager.gameObject;
+        this.fromAttr = manager.GetComponent<BasicObjectAttr>();
+    }
+
+    public override int getCod() {
+        return 6;
+    }
 
     public BasicState config(string lookingType, EventAction doWhenLocate) {
         this.searchConfig.Add(new Config(lookingType, doWhenLocate));
@@ -23,29 +33,6 @@ public class BasicState : State {
         return this;
     }
 
-    public class Config {
-
-        public List<string> searchTypes = new List<string>();
-        public EventAction doWhenLocate;
-
-        public Config(string searchType, EventAction doWhenLocate) {
-            this.searchTypes.Add(searchType);
-            this.doWhenLocate = doWhenLocate;
-        }
-
-        public EventAction getDoWhenLocate() {
-            return doWhenLocate;
-        }
-
-        public List<string> getSearchClass() {
-            return searchTypes;
-        }
-
-    }
-
-    public override int getCod() {
-        return 6;
-    }
 
     public BasicState clear() {
         this.searchConfig.Clear();
@@ -67,7 +54,7 @@ public class BasicState : State {
             && isVisible(c)) {
                 State n = notify(c.gameObject);
                 if (n != null) {
-                    return n;
+                    manager.setCurrentState(n);
                 }
             }
         }
@@ -110,5 +97,26 @@ public class BasicState : State {
 
     public override string ToString() {
         return "BASICSTATE";
+    }
+
+
+    public class Config {
+
+        public List<string> searchTypes = new List<string>();
+        public EventAction doWhenLocate;
+
+        public Config(string searchType, EventAction doWhenLocate) {
+            this.searchTypes.Add(searchType);
+            this.doWhenLocate = doWhenLocate;
+        }
+
+        public EventAction getDoWhenLocate() {
+            return doWhenLocate;
+        }
+
+        public List<string> getSearchClass() {
+            return searchTypes;
+        }
+
     }
 }
