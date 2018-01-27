@@ -40,7 +40,7 @@ public class Panel : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void FixedUpdate ()
+    void Update ()
     {
         if (Input.GetButtonDown("X360_A01"))
         {
