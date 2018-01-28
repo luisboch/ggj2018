@@ -58,11 +58,11 @@ public class Config : MonoBehaviour {
     public static Config getInstance() {
         if (instance == null) {
             instance = new Config();
-            Debug.LogWarning("No Config found, using default!");
+            //Debug.LogWarning("No Config found, using default!");
         }
         else
         {
-            Debug.LogWarning("There is a Config already!!! Let's use it!");
+            //Debug.LogWarning("There is a Config already!!! Let's use it!");
         }
         return instance;
     }
@@ -79,13 +79,13 @@ public class Config : MonoBehaviour {
             infos.Add(o);
         }
         infosCountScene = infos.Count;
-        Debug.Log("Infos total:  "+infosCountScene);
+        //Debug.Log("Infos total:  "+infosCountScene);
     }
 
     public void UpdateCollectedInfos()
     {
         collectedInfos++;
-        Debug.Log("Collected:  " + collectedInfos);
+        //Debug.Log("Collected:  " + collectedInfos);
     }
 
     public bool IsAllInfosCollected()
