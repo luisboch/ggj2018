@@ -8,7 +8,7 @@ public class Config : MonoBehaviour {
     public bool lockMouse = true;
     public GameObject hero;
     public bool lightIsOn = true;
-    public bool _alert = false;
+    private bool _alert = false;
     private List<GameObject> infos = new List<GameObject>();
     private static int collectedInfos;
     private static int infosCountScene;
@@ -19,13 +19,19 @@ public class Config : MonoBehaviour {
             return _alert;
         }
         set {
+            if(_alert != value && value){
+                // Play Sound
+                audioSource.Play();
+            }
             _alert = value;
             remainingAlertTime = alertTime;
+
         }
     }
 
     public float alertTime = 15f;
     private float remainingAlertTime;
+    private AudioSource audioSource;
 
     // Use this for initialization
     void Awake() {
@@ -34,6 +40,9 @@ public class Config : MonoBehaviour {
         }
     }
 
+    void Start() {
+        this.audioSource = GetComponent<AudioSource>();
+    }
 
     // Update is called once per frame
     void Update() {
@@ -69,7 +78,7 @@ public class Config : MonoBehaviour {
         {
             infos.Add(o);
         }
-        infosCountScene = infos.Count; 
+        infosCountScene = infos.Count;
         Debug.Log("Infos total:  "+infosCountScene);
     }
 
