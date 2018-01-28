@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 
@@ -14,6 +12,7 @@ public class Player : MonoBehaviour {
     public bool disguised = false;
     public float velocityMultiplier = 0.5f;
     public float runMultiplier = 0.5f;
+    public float radius = 0.5f;
 
     private SoldierAnimatorController animatorController;
 
@@ -53,29 +52,8 @@ public class Player : MonoBehaviour {
         animatorController.setForward(movement.magnitude);
     }
 
-<<<<<<< HEAD
-    private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Disguise")
-        {
-            if (!disguised) {
-                DisguiseBox disguise = other.gameObject.GetComponent<DisguiseBox>();
-                //                spritePlayer.GetComponent<SpriteRenderer>().sprite = disguise.sprite;
-                disguised = true;
-                FeedbackMessage.getInstance().AddMessage("Voce pegou um disfarce", 5);
-            }
-        }
-        else if (other.gameObject.tag == "Info")
-        {
-            Config.getInstance().UpdateCollectedInfos();
-            FeedbackMessage.getInstance().AddMessage("Voce pegou uma informacao", 5);
-            Destroy(other.gameObject);
-=======
 
-    Config config;
 
-    public Vector3 center;
-    public float radius = 0.5f;
-    double i = 0.5;
 
 
     // Update is called once per frame
@@ -87,6 +65,8 @@ public class Player : MonoBehaviour {
             foreach (Collider other in colliders){
                 if (other.gameObject.tag == "Disguise")
                 {
+                    FeedbackMessage.getInstance().AddMessage("Voce pegou um disfarce", 5);
+
                     if (!disguised) {
                         disguised = true;
                     }
@@ -94,8 +74,8 @@ public class Player : MonoBehaviour {
                 else if (other.gameObject.tag == "Info")
                 {
                     Config.getInstance().UpdateCollectedInfos();
+                    FeedbackMessage.getInstance().AddMessage("Voce pegou uma informacao", 5);
                     Destroy(other.gameObject);
->>>>>>> 5eba044f64c4393718aac4387c221f13337a850b
 
                 }
             }
