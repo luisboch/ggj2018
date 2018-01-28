@@ -7051,6 +7051,11 @@ Prefab:
       propertyPath: m_Center.z
       value: 16.58706
       objectReference: {fileID: 0}
+    - target: {fileID: 114122905173356684, guid: f86baf8b09ca9cc4e8b541b884fba859,
+        type: 2}
+      propertyPath: nextScene
+      value: Fase3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f86baf8b09ca9cc4e8b541b884fba859, type: 2}
   m_IsPrefabParent: 0
