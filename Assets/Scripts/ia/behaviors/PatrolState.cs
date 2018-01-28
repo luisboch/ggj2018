@@ -24,7 +24,7 @@ public class PatrolState : IAState {
     }
 
     public override void start(GameObject obj) {
-        base.start(obj);
+        base.start(obj);;
         updateRouteIndex();
     }
 
@@ -40,6 +40,10 @@ public class PatrolState : IAState {
 
         if (agent) {
             agent.destination = patrolRoute[currentPoint].transform.position;
+        }
+
+        if (animatorController) {
+            animatorController.setForward(0.5f);
         }
 
         return this;

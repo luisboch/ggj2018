@@ -55,7 +55,7 @@ public class LineOfSight : MonoBehaviour {
     /// <param name="status"></param>
     public void SetStatus(Status status) {
         _currentStatus = status;
-        if(status.Equals(Status.Alerted)){
+        if (status.Equals(Status.Alerted)) {
             _config.alert = true;
         }
     }
@@ -167,6 +167,14 @@ public class LineOfSight : MonoBehaviour {
         }
     }
 
+    void OnDisable() {
+        if(_hits != null){
+            _hits.Clear();
+        }
+        if(_mesh != null){
+            _mesh.Clear();
+        }
+    }
     private void UpdateMesh() {
         if (_hits == null || _hits.Count == 0)
             return;
@@ -221,7 +229,7 @@ public class LineOfSight : MonoBehaviour {
         _meshRenderer.material = GetMaterialForStatus(_currentStatus);
     }
 
-    public float GetMaxDist(){
+    public float GetMaxDist() {
         return this._maxDistance;
     }
 }
