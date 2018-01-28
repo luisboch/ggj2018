@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PatrolState : State {
+public class PatrolState : IAState {
 
     public GameObject[] patrolRoute;
     public float attractDistance;
@@ -28,7 +28,7 @@ public class PatrolState : State {
         updateRouteIndex();
     }
 
-    public override State update(GameObject from) {
+    public override IAState update(GameObject from) {
 
 
         float dist = Vector3.Distance(patrolRoute[currentPoint].transform.position, from.transform.position);

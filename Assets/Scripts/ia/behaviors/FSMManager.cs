@@ -7,8 +7,8 @@ using UnityEngine.EventSystems;
 public class FSMManager : MonoBehaviour, IEventSystemHandler {
 
 
-    protected List<State> states = new List<State>();
-    protected State currentState;
+    protected List<IAState> states = new List<IAState>();
+    protected IAState currentState;
     protected BasicState basicState;
 
     private static int MAX_MEM_STATES = 5;
@@ -23,8 +23,8 @@ public class FSMManager : MonoBehaviour, IEventSystemHandler {
     public FSMManager() {
     }
 
-    public void setCurrentState(State next) {
-        State previous = null;
+    public void setCurrentState(IAState next) {
+        IAState previous = null;
         if (next == null) {
             this.currentState = null;
             return;
@@ -49,6 +49,10 @@ public class FSMManager : MonoBehaviour, IEventSystemHandler {
 
         // Initialize the state.
         this.currentState.start(gameObject);
+    }
+
+    public IAState GetCurrentState(){
+        return this.currentState;
     }
 
     public void finishCurrentState() {
@@ -79,7 +83,7 @@ public class FSMManager : MonoBehaviour, IEventSystemHandler {
 
         // No behavior?
         if (currentState != null) {
-            State next = this.currentState.update(gameObject);
+            IAState next = this.currentState.update(gameObject);
 
             // This state was finished?
             if (next == null) {

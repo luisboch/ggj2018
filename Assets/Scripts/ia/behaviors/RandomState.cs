@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RandomState : State {
+public class RandomState : IAState {
 
     private System.Random rnd = new System.Random();
 
@@ -14,7 +14,7 @@ public class RandomState : State {
         changeDirTo(newRandomDir());
     }
 
-    public override State update(UnityEngine.GameObject obj) {
+    public override IAState update(UnityEngine.GameObject obj) {
 
         // no item found, then we will continue our search.
         if (rnd.NextDouble() < fromAttr.chanceToChangeDir) {

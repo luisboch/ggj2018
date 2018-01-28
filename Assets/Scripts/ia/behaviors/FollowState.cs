@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FollowState : State {
+public class FollowState : IAState {
 
     private EventAction nextAction;
 
@@ -21,7 +21,7 @@ public class FollowState : State {
         return this;
     }
 
-    public override State update(GameObject obj) {
+    public override IAState update(GameObject obj) {
 
         float dist = Vector3.Distance(target.transform.position, obj.transform.position);
 
@@ -32,7 +32,7 @@ public class FollowState : State {
             // Target is dead or lost
             return null;
         } else if (dist < (fromAttr.arriveDist + (fromCtrl.radius) + (targetCtrl == null ? 0 : targetCtrl.radius) )) {
-            return nextAction == null ? null : (State) nextAction.Invoke(target);
+            return nextAction == null ? null : (IAState) nextAction.Invoke(target);
         }
 
 //        obj.transform.LookAt(target.transform.position);/

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicState : State {
+public class BasicState : IAState {
 
-    private List<SearchConf> searchConfig = new List<SearchConf>();
+    private List<SearchConfig> searchConfig = new List<SearchConfig>();
     private List<string> searchTags = new List<string>();
     private FSMManager manager;
     private Config _config;
@@ -26,8 +26,12 @@ public class BasicState : State {
         return 6;
     }
 
+    public List<SearchConfig> GetSearchConfig() {
+        return this.searchConfig;
+    }
+
     public BasicState configure(string lookingType, EventAction doWhenLocate, EventAction doWhenAlert) {
-        this.searchConfig.Add(new SearchConf(lookingType, doWhenLocate, doWhenAlert));
+        this.searchConfig.Add(new SearchConfig(lookingType, doWhenLocate, doWhenAlert));
         this.searchTags.Clear();
 
 
@@ -48,7 +52,7 @@ public class BasicState : State {
         return this;
     }
 
-    public override State update(GameObject obj) {
+    public override IAState update(GameObject obj) {
 
         // just validation
         if (obj == null || !fromAttr.isAlive().GetValueOrDefault(false)) {
@@ -60,7 +64,7 @@ public class BasicState : State {
             if (_lineOfSight.SeeByTag(tag)) {
                 List<GameObject> inFView = _lineOfSight.getViewing();
                 foreach (GameObject c in inFView) {
-                    State n = notify(c.gameObject, _lineOfSight.GetStatus().Equals(LineOfSight.Status.Alerted));
+                    IAState n = notify(c.gameObject, _lineOfSight.GetStatus().Equals(LineOfSight.Status.Alerted));
                     if (n != null) {
                         manager.setCurrentState(n);
                     }
@@ -72,8 +76,8 @@ public class BasicState : State {
     }
 
 
-    private State notify(GameObject gameObject0, bool dangerArea) {
-        foreach (SearchConf c in this.searchConfig) {
+    private IAState notify(GameObject gameObject0, bool dangerArea) {
+        foreach (SearchConfig c in this.searchConfig) {
             if (c.searchTypes.Contains(gameObject0.tag)) {
                 if (_config.alert || dangerArea) {
                     return c.doWhenAlert.Invoke(gameObject0);
@@ -92,30 +96,4 @@ public class BasicState : State {
         return "BASICSTATE";
     }
 
-
-    public class SearchConf {
-
-        public List<string> searchTypes = new List<string>();
-        public EventAction doWhenView;
-        public EventAction doWhenAlert;
-
-        public SearchConf(string searchType, EventAction doWhenLocate, EventAction doWhenAlert) {
-            this.searchTypes.Add(searchType);
-            this.doWhenView = doWhenLocate;
-            this.doWhenAlert = doWhenAlert;
-        }
-
-        public EventAction getDoWhenLocate() {
-            return doWhenView;
-        }
-
-        public EventAction getDoWhenAlert() {
-            return this.doWhenAlert;
-        }
-
-        public List<string> getSearchClass() {
-            return searchTypes;
-        }
-
-    }
 }

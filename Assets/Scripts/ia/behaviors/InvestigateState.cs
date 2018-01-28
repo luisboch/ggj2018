@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class InvestigateState : State {
+public class InvestigateState : IAState {
 
     public Vector3 targetPos;
     private LineOfSight lineOfSight;
@@ -31,7 +31,7 @@ public class InvestigateState : State {
         return 3;
     }
 
-    public override State update(GameObject obj) {
+    public override IAState update(GameObject obj) {
 
         float dist = Vector3.Distance(targetPos, obj.transform.position);
 
@@ -45,6 +45,7 @@ public class InvestigateState : State {
             // We arrive to destination
             IdleState state = new IdleState();
             state.time = fromAttr.investigateWaitTime;
+            state.isInfinite = false;
 
             state.onComplete((s) => {
                 return previousState;

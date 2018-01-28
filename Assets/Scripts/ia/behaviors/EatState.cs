@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EatState : State {
+public class EatState : IAState {
 
     private float lastTime = 0;
     private float timeToEat = 3f;
@@ -30,7 +30,7 @@ public class EatState : State {
     }
 
 
-    public override State update(GameObject obj) {
+    public override IAState update(GameObject obj) {
 
 
         if ((Time.time - lastTime) > timeToEat) {

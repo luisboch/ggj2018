@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class IdleState : State {
+public class IdleState : IAState {
 
     private EventAction nextAction;
     public float time = -1;
@@ -17,7 +17,7 @@ public class IdleState : State {
         return this;
     }
 
-    public override State update(GameObject obj) {
+    public override IAState update(GameObject obj) {
         if (!isInfinite  ) {
 
             timeRemaining -= Time.deltaTime;

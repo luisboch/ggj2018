@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
-public abstract class State {
+public abstract class IAState {
 
-    protected State previousState;
+    protected IAState previousState;
     protected GameObject from;
     protected CharacterController fromCtrl;
     protected BasicObjectAttr fromAttr;
@@ -16,7 +16,7 @@ public abstract class State {
 
     public abstract int getCod();
 
-    public State setPrevious(State previous) {
+    public IAState setPrevious(IAState previous) {
         this.previousState = previous;
         return this;
     }
@@ -36,7 +36,7 @@ public abstract class State {
     }
 
 
-    public State setTarget(GameObject target) {
+    public IAState setTarget(GameObject target) {
         if (target != null) {
             this.target = target;
 
@@ -56,9 +56,9 @@ public abstract class State {
      * @param obj
      * @return
      */
-    public virtual State update(GameObject obj) {
+    public virtual IAState update(GameObject obj) {
         return null;
     }
 
-    public delegate State EventAction(GameObject obj);
+    public delegate IAState EventAction(GameObject obj);
 }
