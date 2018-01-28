@@ -26,7 +26,8 @@ public class SoldierLvl2 : MonoBehaviour {
                         Collider[] coll = Physics.OverlapSphere(gameObject.transform.position, fromAttr.dangerViewAreaRadius);
                         foreach (Collider c in coll) {
                             if (c.tag.Equals("Player")) {
-                                Debug.LogError("GOTCHA");
+                                var go = Camera.main.GetComponent<GameOverCameraControl>();
+                                go.showDeadEffect = true;
                                 return null;
                             }
                         }
@@ -54,7 +55,8 @@ public class SoldierLvl2 : MonoBehaviour {
                         Collider[] coll = Physics.OverlapSphere(gameObject.transform.position, fromAttr.dangerViewAreaRadius);
                         foreach (Collider c in coll) {
                             if (c.tag.Equals("Player")) {
-                                Debug.LogError("GOTCHA");
+                                var go = Camera.main.GetComponent<GameOverCameraControl>();
+                                go.showDeadEffect = true;
                                 return null;
                             }
                         }

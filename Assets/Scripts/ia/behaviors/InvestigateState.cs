@@ -35,6 +35,8 @@ public class InvestigateState : IAState {
 
         float dist = Vector3.Distance(targetPos, obj.transform.position);
 
+        float calc = (fromAttr.arriveDist + fromCtrl.radius + (targetCtrl == null ? 0 : targetCtrl.radius) );
+        Debug.Log("Distance: " + dist + ", calc:" + calc);
 
         if (dist < (fromAttr.arriveDist + (fromCtrl.radius) + (targetCtrl == null ? 0 : targetCtrl.radius) )) {
 

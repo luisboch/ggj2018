@@ -27,6 +27,11 @@ public class BasicObjectAttr : MonoBehaviour, IEventSystemHandler {
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(transform.position, dangerViewAreaRadius);
         }
+        CharacterController ch = GetComponent<CharacterController>();
+        if (ch != null) {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, ch.radius);
+        }
     }
 
     public bool? isAlive() {
