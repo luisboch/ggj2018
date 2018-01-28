@@ -37,14 +37,13 @@ public class Player : MonoBehaviour {
 
     void Move() {
         Vector3 movement = new Vector3(Input.GetAxisRaw("X360_LStickX01"), 0, Input.GetAxisRaw("X360_LStickY01"));
-        float run = Input.GetAxisRaw("X360_RightTrigger01");
-        if (Input.GetAxisRaw("X360_RightTrigger01") < 0) {
-            Debug.Log("RUNNIGN");
-        }
+        //float run = Mathf.Abs(Input.GetAxisRaw("X360_RightTrigger01"));
+        float run = Input.GetButton("X360_X01") ? 1 : 0;
+        Debug.Log(run);
 
         Vector3 dir = transform.position + movement;
         transform.LookAt(dir);
-        Debug.Log(run);
+        
         run *= runMultiplier;
         float multiplierResult = velocityMultiplier + run;
         transform.position += (  multiplierResult * movement * Time.deltaTime);

@@ -507,7 +507,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: BACK
+  m_Text: BACK (B)
 --- !u!222 &1468743540
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -829,6 +829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d640125802c3c1444b696cbd877d3b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeTime: 2
   firstScene: 
   playText: {fileID: 0}
   creditsText: {fileID: 0}
@@ -863,3 +864,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d6228a5999cb7b4b948346b878c03d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeTime: 2

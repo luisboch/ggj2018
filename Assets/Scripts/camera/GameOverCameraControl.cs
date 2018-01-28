@@ -4,7 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(CameraFollowGO))]
 public class GameOverCameraControl : MonoBehaviour {
     public bool showDeadEffect;
-    public string gameOverScene;
     public Transform deadCameraPos;
     public float slowDownPhysics = 0.05f;
 
@@ -25,7 +24,7 @@ public class GameOverCameraControl : MonoBehaviour {
             if (Time.timeScale < 0.2) {
                 Time.timeScale = 1;
                 showDeadEffect= false; // Don't execute more than once.
-                Initiate.Fade(gameOverScene, Color.black, 2f);
+                Initiate.Fade("Gameover", Color.black, 2f);
             }
         }
 

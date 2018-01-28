@@ -270,13 +270,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca2e2c3999e8a645a141a1b6c13a159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 5
   force: 0
-  bulletPosition: {fileID: 1999827843642920}
-  bullet: {fileID: 1909352410426566, guid: b2a4465e5548f1040aec09a7dd3f53d4, type: 2}
-  spritePlayer: {fileID: 1906439486145898}
-  arma: {fileID: 1612542552555246}
   disguised: 0
+  velocityMultiplier: 0.5
+  runMultiplier: 0.8
 --- !u!212 &212138756554282714
 SpriteRenderer:
   m_ObjectHideFlags: 1
