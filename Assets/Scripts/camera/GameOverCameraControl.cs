@@ -9,9 +9,12 @@ public class GameOverCameraControl : MonoBehaviour {
 
     private CameraFollowGO camera;
     private float effectTime = 2f;
+    private AudioSource audioSource;
+    private bool soundPlayed = false;
 
     void Start() {
         camera = GetComponent<CameraFollowGO>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update() {
@@ -23,9 +26,17 @@ public class GameOverCameraControl : MonoBehaviour {
 
             if (Time.timeScale < 0.2) {
                 Time.timeScale = 1;
-                showDeadEffect= false; // Don't execute more than once.
+
+                if (!soundPlayed) {
+                    soundPlayed = true;
+                    audioSource.Play();
+                }
+
+                showDeadEffect = false; // Don't execute more than once.
                 Initiate.Fade("Gameover", Color.black, 2f);
             }
+
+
         }
 
     }
