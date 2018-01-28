@@ -14,7 +14,7 @@ public class ButtonBack : MonoBehaviour {
 
         if (Camera.main.transform.position == new Vector3(17, 0, -10))
         {
-            if (((Input.GetButtonDown("X360_B01"))) )
+            if (Input.GetButtonDown("X360_B01"))
             {
                 Camera.main.transform.position = new Vector3(0, 0, -10);
             }
