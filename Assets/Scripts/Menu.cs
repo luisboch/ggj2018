@@ -1,55 +1,79 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour {
 
-    float timeRemaining = 0f;
+    float timeRemaining;
+    public string firstScene;
 
-    public GameObject buttonPlayGame;
-    public GameObject buttonCredits;
-    public GameObject buttonNameCredits;
-    public GameObject buttonNameCredits2;
-    public GameObject logo;
-    public GameObject buttonNamePlayers;
-    public GameObject buttonNameZombies;
-    public GameObject buttonNameShoot;
-    public GameObject buttonNameAim;
-    public GameObject buttonNameMove;
-    public GameObject buttonBack;
-    public GameObject howToPlay;
+    public Text playText;
+    public Text creditsText;
 
-    public Text play;
-    public Text credits;
+    public GameObject play;
+    public GameObject credits;
+    public GameObject back;
+    public GameObject imgGGJ;
+    public GameObject imgJoy;
+    public GameObject creditsInfo1;
+    public GameObject creditsInfo2;
+    public GameObject aim;
+    public GameObject move;
+    public GameObject action;
 
-    private bool sceneCredits;
-
-    public enum PositionMenu {
+    public enum MainOption {
         PLAY,
-        CREDITS,
-        BACK      
+        CREDITS
     }
 
-    public PositionMenu positionMenu;
+    public MainOption MainMenuOption;
+
+    public enum MenuScreen
+    {
+        MAIN,
+        CREDITS
+    }
+
+    public MenuScreen currentScreen;
 
     // Use this for initialization
-    void Start () {
+    void Start () 
+    {
+        CallMainMenu();
+    }
 
-        sceneCredits = false;
-
-        buttonPlayGame.SetActive(true);
-        buttonCredits.SetActive(true);
-        buttonNameCredits.SetActive(false);
-        buttonNameCredits2.SetActive(false);
-        logo.SetActive(false);
-       
-        
-        buttonNameShoot.SetActive(true);
-        buttonNameAim.SetActive(true);
-        buttonNameMove.SetActive(true);
-        buttonBack.SetActive(false);
-        howToPlay.SetActive(true);
+    void GetMenuOptionFromControllerXBOX()
+    {
+        if (currentScreen == MenuScreen.MAIN)
+        {
+            if (((Input.GetAxisRaw("X360_LStickY01") < 0)) || ((Input.GetAxisRaw("X360_LStickY02") < 0)) || ((Input.GetAxisRaw("X360_LStickY03") < 0)) || ((Input.GetAxisRaw("X360_LStickY04") < 0)))
+            {
+                MainMenuOption = MainOption.CREDITS;
+            }
+            if (((Input.GetAxisRaw("X360_LStickY01") > 0)) || ((Input.GetAxisRaw("X360_LStickY02") > 0)) || ((Input.GetAxisRaw("X360_LStickY03") > 0)) || ((Input.GetAxisRaw("X360_LStickY04") > 0)))
+            {
+                MainMenuOption = MainOption.PLAY;
+            }
+            switch (MainMenuOption)
+            {
+                case MainOption.PLAY:
+                    playText.color = Color.white;
+                    creditsText.color = Color.gray;
+                    break;
+                case MainOption.CREDITS:
+                    playText.color = Color.gray;
+                    creditsText.color = Color.white;
+                    break;
+            }
+        }
+        else
+        {
+            if (Input.GetButtonDown("X360_B01"))
+            {
+                CallMainMenu();
+            }
+        }
     }
 
     // Update is called once per frame
@@ -57,106 +81,67 @@ public class Menu : MonoBehaviour {
     {
         if (Camera.main.transform.position == new Vector3(0, 0, -10))
         {
-
             timeRemaining += Time.deltaTime;
             float seconds = (timeRemaining % 60);
 
             if (seconds > 1)
             {
-
-
                 // Verifica comando do controle do Xbox
-                controllerXBOX();
+                GetMenuOptionFromControllerXBOX();
 
-                // Selecionar componente do menu de acordo com comando do controle
-                positionsMenu();
-
-
-                // Entrar em alguma opcao do menu / cena
-                if (((Input.GetButtonDown("X360_A01"))) || ((Input.GetButtonDown("X360_A02"))) || ((Input.GetButtonDown("X360_A03"))) || ((Input.GetButtonDown("X360_A04"))))
+                if(currentScreen == MenuScreen.MAIN)
                 {
-                    if (!sceneCredits)
+                    // Entrar em alguma opcao do menu / cena
+                    if (Input.GetButtonDown("X360_A01"))
                     {
-                        if (positionMenu == PositionMenu.PLAY)
+                        if (MainMenuOption == MainOption.PLAY)
                         {
-                            SceneManager.LoadScene("MapSceneNavMesh");
+                            if (string.IsNullOrEmpty(firstScene))
+                            {
+                                return;
+                            }
+                            SceneManager.LoadScene(firstScene);
                         }
-                        else if (positionMenu == PositionMenu.CREDITS)
+                        else if (MainMenuOption == MainOption.CREDITS)
                         {
-                            callCredits();
-                            positionMenu = PositionMenu.BACK;
-                            sceneCredits = true;
+                            CallCredits();
                         }
                     }
-                    else
-                    {
-                        if (positionMenu == PositionMenu.BACK)
-                        {
-                            positionMenu = PositionMenu.PLAY;
-                            callBack();
-                            sceneCredits = false;
-                        }
-                    }
-                }
+                }                
             }
-        }     
-    }    
-
-    void controllerXBOX() {
-        if (((Input.GetAxisRaw("X360_LStickY01") < 0)) || ((Input.GetAxisRaw("X360_LStickY02") < 0)) || ((Input.GetAxisRaw("X360_LStickY03") < 0)) || ((Input.GetAxisRaw("X360_LStickY04") < 0)))
-        {
-            positionMenu = PositionMenu.CREDITS;
-
-        }
-        if (((Input.GetAxisRaw("X360_LStickY01") > 0)) || ((Input.GetAxisRaw("X360_LStickY02") > 0)) || ((Input.GetAxisRaw("X360_LStickY03") > 0)) || ((Input.GetAxisRaw("X360_LStickY04") > 0)))
-        {
-            positionMenu = PositionMenu.PLAY;
         }
     }
 
-    void positionsMenu() {
-        switch (positionMenu)
-        {
-            case PositionMenu.PLAY:
-                play.color = Color.white;
-                credits.color = Color.gray;
-                break;
-            case PositionMenu.CREDITS:
-                play.color = Color.gray;
-                credits.color = Color.white;
-                break;
-        }
-    }
-
-
-    void callCredits() {
-        buttonPlayGame.SetActive(false);
-        buttonCredits.SetActive(false);
-        buttonNameCredits.SetActive(true);
-        buttonNameCredits2.SetActive(true);
-        logo.SetActive(true);
-      
-        buttonNameShoot.SetActive(false);
-        buttonNameAim.SetActive(false);
-        buttonNameMove.SetActive(false);
-        buttonBack.SetActive(true);
-        howToPlay.SetActive(false);
-    }
-
-
-    void callBack()
+    void CallMainMenu()
     {
-        buttonPlayGame.SetActive(true);
-        buttonCredits.SetActive(true);
-        buttonNameCredits.SetActive(false);
-        buttonNameCredits2.SetActive(false);
-        logo.SetActive(false);
-       
-        buttonNameShoot.SetActive(true);
-        buttonNameAim.SetActive(true);
-        buttonNameMove.SetActive(true);
-        buttonBack.SetActive(false);
-        howToPlay.SetActive(true);
+        currentScreen = MenuScreen.MAIN;
+        play.SetActive(true);
+        credits.SetActive(true);
+        back.SetActive(false);
+        imgGGJ.SetActive(false);
+        imgJoy.SetActive(true);
+        creditsInfo1.SetActive(false);
+        creditsInfo2.SetActive(false);
+        aim.SetActive(true);
+        move.SetActive(true);
+        action.SetActive(true);
     }
+
+
+    void CallCredits() 
+    {
+        currentScreen = MenuScreen.CREDITS;
+        play.SetActive(false);
+        credits.SetActive(false);
+        back.SetActive(true);
+        imgGGJ.SetActive(true);
+        imgJoy.SetActive(false);
+        creditsInfo1.SetActive(true);
+        creditsInfo2.SetActive(true);
+        aim.SetActive(false);
+        move.SetActive(false);
+        action.SetActive(false);
+    }
+
 
 }
