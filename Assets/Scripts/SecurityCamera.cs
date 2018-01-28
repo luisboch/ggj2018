@@ -51,40 +51,44 @@ public class SecurityCamera : MonoBehaviour {
                 GameObject obj = obs[0];
                 Player player = obj.GetComponent<Player>();
 
-                if (player != null && !player.disguised) {
+                if (player != null) {
+                    if (!player.disguised) {
 
-                    Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, alertRadious);
+                        Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, alertRadious);
 
-                    GameObject nearest = null;
-                    float nearestDist = 0f;
+                        GameObject nearest = null;
+                        float nearestDist = 0f;
 
-                    foreach (Collider c in colliders) {
-                        if (c.tag.Equals("Soldier")) {
-                            float dist = Vector3.Distance(c.gameObject.transform.position, transform.position);
-                            if (nearest == null || dist < nearestDist ) {
-                                nearestDist = dist;
-                                nearest = c.gameObject;
+                        foreach (Collider c in colliders) {
+                            if (c.tag.Equals("Soldier")) {
+                                float dist = Vector3.Distance(c.gameObject.transform.position, transform.position);
+                                if (nearest == null || dist < nearestDist ) {
+                                    nearestDist = dist;
+                                    nearest = c.gameObject;
+                                }
                             }
                         }
-                    }
 
-                    if (nearest != null) {
+                        if (nearest != null) {
 
-                        FSMManager g = nearest.GetComponent<FSMManager>();
-                        BasicObjectAttr attr = nearest.GetComponent<BasicObjectAttr>();
-                        // We arrive to destination
-                        List<SearchConfig> searchConf = g.GetBasicState().GetSearchConfig();
-                        foreach (SearchConfig sc in searchConf){
-                            if(sc.doWhenAlert != null){
-                                IAState st = sc.doWhenAlert.Invoke(obj);
-                                g.setCurrentState(st);
+                            FSMManager g = nearest.GetComponent<FSMManager>();
+                            BasicObjectAttr attr = nearest.GetComponent<BasicObjectAttr>();
+                            // We arrive to destination
+                            List<SearchConfig> searchConf = g.GetBasicState().GetSearchConfig();
+                            foreach (SearchConfig sc in searchConf) {
+                                if (sc.doWhenAlert != null) {
+                                    IAState st = sc.doWhenAlert.Invoke(obj);
+                                    g.setCurrentState(st);
 
+                                }
                             }
                         }
+                        lineOfSight.SetStatus(LineOfSight.Status.Alerted);
+                    } else {
+                        lineOfSight.SetStatus(LineOfSight.Status.Suspicious);
                     }
                 }
 
-                lineOfSight.SetStatus(LineOfSight.Status.Alerted);
 
             }
         }

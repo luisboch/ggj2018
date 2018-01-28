@@ -33,13 +33,15 @@ public class Player : MonoBehaviour {
     void Update() {
         // Funcao de Movimentacao
         Move();
+
+        // Verifica se há algum objeto com ação proximo
+        CheckForActionItem();
     }
 
     void Move() {
         Vector3 movement = new Vector3(Input.GetAxisRaw("X360_LStickX01"), 0, Input.GetAxisRaw("X360_LStickY01"));
         //float run = Mathf.Abs(Input.GetAxisRaw("X360_RightTrigger01"));
         float run = Input.GetButton("X360_X01") ? 1 : 0;
-        Debug.Log(run);
 
         Vector3 dir = transform.position + movement;
         transform.LookAt(dir);
@@ -51,6 +53,7 @@ public class Player : MonoBehaviour {
         animatorController.setForward(movement.magnitude);
     }
 
+<<<<<<< HEAD
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "Disguise")
         {
@@ -66,7 +69,36 @@ public class Player : MonoBehaviour {
             Config.getInstance().UpdateCollectedInfos();
             FeedbackMessage.getInstance().AddMessage("Voce pegou uma informacao", 5);
             Destroy(other.gameObject);
+=======
 
+    Config config;
+
+    public Vector3 center;
+    public float radius = 0.5f;
+    double i = 0.5;
+
+
+    // Update is called once per frame
+    void CheckForActionItem ()
+    {
+        if (Input.GetButtonDown("X360_A01"))
+        {
+            Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
+            foreach (Collider other in colliders){
+                if (other.gameObject.tag == "Disguise")
+                {
+                    if (!disguised) {
+                        disguised = true;
+                    }
+                }
+                else if (other.gameObject.tag == "Info")
+                {
+                    Config.getInstance().UpdateCollectedInfos();
+                    Destroy(other.gameObject);
+>>>>>>> 5eba044f64c4393718aac4387c221f13337a850b
+
+                }
+            }
         }
     }
 }

@@ -22,4 +22,7 @@ EditorBuildSettings:
     guid: 53c0adedf47b84844a54bef0bc8fd137
   - enabled: 1
     path: Assets/Scenes/fases/Fase2.unity
-    guid: c003418e7e0b84e399d8adf79c50dc5e
+    guid: 1690d521ba03f0941aa4237049ea5c2a
+  - enabled: 1
+    path: Assets/Scenes/fases/Fase3.unity
+    guid: 90be2cbce5f254e04a766745a7e23237
