@@ -51,7 +51,7 @@ public class EnemyNavMesh : MonoBehaviour {
     {
         if (col.gameObject.tag == "Bullet")
         {
-            Debug.Log("colidiu tiro");
+            //Debug.Log("colidiu tiro");
             Destroy(col.gameObject);
             TookDamage();
         }
