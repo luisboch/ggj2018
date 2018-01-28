@@ -74,7 +74,7 @@ public class Player : MonoBehaviour {
                 else if (other.gameObject.tag == "Info")
                 {
                     Config.getInstance().UpdateCollectedInfos();
-                    FeedbackMessage.getInstance().AddMessage("Voce pegou uma informacao", 5);
+                    FeedbackMessage.getInstance().AddMessage("Voce pegou uma informação", 5);
                     Destroy(other.gameObject);
 
                 }
