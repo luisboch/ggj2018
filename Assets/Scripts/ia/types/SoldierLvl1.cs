@@ -23,14 +23,15 @@ public class SoldierLvl1 : MonoBehaviour {
                     return null;
                 },
                 (o) => {
-                    Debug.Log("HERE");
                     investigateState.setTargetPos(o.transform.position);
                     investigateState.SetDoWhenArrive((s) => {
 
                         Collider[] coll = Physics.OverlapSphere(gameObject.transform.position, fromAttr.dangerViewAreaRadius);
+                        Debug.Log("Clll" + coll.Length);
                         foreach (Collider c in coll) {
                             if (c.tag.Equals("Player")) {
-                                Debug.LogError("GOTCHA");
+                                var go = Camera.main.GetComponent<GameOverCameraControl>();
+                                go.showDeadEffect = true;
                                 return null;
                             }
                         }
