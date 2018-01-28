@@ -1453,7 +1453,6 @@ MonoBehaviour:
   lockMouse: 0
   hero: {fileID: 0}
   lightIsOn: 1
-  _alert: 0
   alertTime: 15
 --- !u!4 &471155367
 Transform:
@@ -1489,7 +1488,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 26bf73c7d7c4a9d4880c8e7cfd15b56e, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
