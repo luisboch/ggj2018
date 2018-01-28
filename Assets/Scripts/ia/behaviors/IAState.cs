@@ -12,6 +12,7 @@ public abstract class IAState {
     protected GameObject target;
     protected CharacterController targetCtrl;
     protected BasicObjectAttr targetAttr;
+    protected SoldierAnimatorController animatorController;
 
 
     public abstract int getCod();
@@ -29,7 +30,7 @@ public abstract class IAState {
         this.from = obj;
         this.fromCtrl = obj.GetComponent<CharacterController>();
         this.fromAttr = obj.GetComponent<BasicObjectAttr>();
-
+        this.animatorController = obj.GetComponent<SoldierAnimatorController>();
         if (this.fromAttr == null || this.fromCtrl == null) {
             throw new ExecutionEngineException("All characters must have a character controller and character attributes");
         }

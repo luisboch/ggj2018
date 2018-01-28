@@ -26,6 +26,9 @@ public class IdleState : IAState {
                 return nextAction == null ? null : nextAction.Invoke(from);
             }
         }
+        if (animatorController != null) {
+            animatorController.setForward(0);
+        }
         return this;
     }
 

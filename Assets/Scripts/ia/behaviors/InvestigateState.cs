@@ -36,7 +36,6 @@ public class InvestigateState : IAState {
         float dist = Vector3.Distance(targetPos, obj.transform.position);
 
         float calc = (fromAttr.arriveDist + fromCtrl.radius + (targetCtrl == null ? 0 : targetCtrl.radius) );
-        Debug.Log("Distance: " + dist + ", calc:" + calc);
 
         if (dist < (fromAttr.arriveDist + (fromCtrl.radius) + (targetCtrl == null ? 0 : targetCtrl.radius) )) {
 
@@ -60,9 +59,17 @@ public class InvestigateState : IAState {
         if (navAgent) {
             navAgent.destination = targetPos;
             navAgent.speed = lineOfSight.GetStatus().Equals(LineOfSight.Status.Alerted) ? fromAttr.alertVelocity : fromAttr.velocity;
+            if (animatorController) {
+                animatorController.setForward(navAgent.speed);
+            }
+
         } else {
             Vector3 def = targetPos - obj.transform.position;
             obj.transform.position += (def.normalized * fromAttr.velocity * Time.deltaTime);
+
+            if (animatorController) {
+                animatorController.setForward(fromAttr.velocity);
+            }
         }
         return this;
     }
