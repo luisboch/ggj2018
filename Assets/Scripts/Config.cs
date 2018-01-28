@@ -12,7 +12,7 @@ public class Config : MonoBehaviour {
     private List<GameObject> infos = new List<GameObject>();
     private static int collectedInfos;
     private static int infosCountScene;
-    private static string nextScene;
+    public static string nextScene;
 
     public bool alert {
         get {

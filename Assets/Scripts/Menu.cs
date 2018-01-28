@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour {
 
+    public float fadeTime = 2.0f;
     float timeRemaining;
     public string firstScene;
 
@@ -13,11 +14,7 @@ public class Menu : MonoBehaviour {
 
     public GameObject play;
     public GameObject credits;
-    public GameObject back;
-    public GameObject imgGGJ;
     public GameObject imgJoy;
-    public GameObject creditsInfo1;
-    public GameObject creditsInfo2;
     public GameObject aim;
     public GameObject move;
     public GameObject action;
@@ -29,50 +26,32 @@ public class Menu : MonoBehaviour {
 
     public MainOption MainMenuOption;
 
-    public enum MenuScreen
-    {
-        MAIN,
-        CREDITS
-    }
-
-    public MenuScreen currentScreen;
 
     // Use this for initialization
     void Start () 
     {
-        CallMainMenu();
     }
 
     void GetMenuOptionFromControllerXBOX()
     {
-        if (currentScreen == MenuScreen.MAIN)
+        if (((Input.GetAxisRaw("X360_LStickY01") < 0)) || ((Input.GetAxisRaw("X360_LStickY02") < 0)) || ((Input.GetAxisRaw("X360_LStickY03") < 0)) || ((Input.GetAxisRaw("X360_LStickY04") < 0)))
         {
-            if (((Input.GetAxisRaw("X360_LStickY01") < 0)) || ((Input.GetAxisRaw("X360_LStickY02") < 0)) || ((Input.GetAxisRaw("X360_LStickY03") < 0)) || ((Input.GetAxisRaw("X360_LStickY04") < 0)))
-            {
-                MainMenuOption = MainOption.CREDITS;
-            }
-            if (((Input.GetAxisRaw("X360_LStickY01") > 0)) || ((Input.GetAxisRaw("X360_LStickY02") > 0)) || ((Input.GetAxisRaw("X360_LStickY03") > 0)) || ((Input.GetAxisRaw("X360_LStickY04") > 0)))
-            {
-                MainMenuOption = MainOption.PLAY;
-            }
-            switch (MainMenuOption)
-            {
-                case MainOption.PLAY:
-                    playText.color = Color.white;
-                    creditsText.color = Color.gray;
-                    break;
-                case MainOption.CREDITS:
-                    playText.color = Color.gray;
-                    creditsText.color = Color.white;
-                    break;
-            }
+            MainMenuOption = MainOption.CREDITS;
         }
-        else
+        if (((Input.GetAxisRaw("X360_LStickY01") > 0)) || ((Input.GetAxisRaw("X360_LStickY02") > 0)) || ((Input.GetAxisRaw("X360_LStickY03") > 0)) || ((Input.GetAxisRaw("X360_LStickY04") > 0)))
         {
-            if (Input.GetButtonDown("X360_B01"))
-            {
-                CallMainMenu();
-            }
+            MainMenuOption = MainOption.PLAY;
+        }
+        switch (MainMenuOption)
+        {
+            case MainOption.PLAY:
+                playText.color = Color.white;
+                creditsText.color = Color.gray;
+                break;
+            case MainOption.CREDITS:
+                playText.color = Color.gray;
+                creditsText.color = Color.white;
+                break;
         }
     }
 
@@ -89,59 +68,19 @@ public class Menu : MonoBehaviour {
                 // Verifica comando do controle do Xbox
                 GetMenuOptionFromControllerXBOX();
 
-                if(currentScreen == MenuScreen.MAIN)
+                // Entrar em alguma opcao do menu / cena
+                if (Input.GetButtonDown("X360_A01"))
                 {
-                    // Entrar em alguma opcao do menu / cena
-                    if (Input.GetButtonDown("X360_A01"))
+                    if (MainMenuOption == MainOption.PLAY)
                     {
-                        if (MainMenuOption == MainOption.PLAY)
-                        {
-                            if (string.IsNullOrEmpty(firstScene))
-                            {
-                                return;
-                            }
-                            SceneManager.LoadScene(firstScene);
-                        }
-                        else if (MainMenuOption == MainOption.CREDITS)
-                        {
-                            CallCredits();
-                        }
+                        Initiate.Fade(firstScene, Color.black, fadeTime);
                     }
-                }                
+                    else if (MainMenuOption == MainOption.CREDITS)
+                    {
+                        Initiate.Fade("Credits", Color.black, fadeTime);
+                    }
+                }
             }
         }
     }
-
-    void CallMainMenu()
-    {
-        currentScreen = MenuScreen.MAIN;
-        play.SetActive(true);
-        credits.SetActive(true);
-        back.SetActive(false);
-        imgGGJ.SetActive(false);
-        imgJoy.SetActive(true);
-        creditsInfo1.SetActive(false);
-        creditsInfo2.SetActive(false);
-        aim.SetActive(true);
-        move.SetActive(true);
-        action.SetActive(true);
-    }
-
-
-    void CallCredits() 
-    {
-        currentScreen = MenuScreen.CREDITS;
-        play.SetActive(false);
-        credits.SetActive(false);
-        back.SetActive(true);
-        imgGGJ.SetActive(true);
-        imgJoy.SetActive(false);
-        creditsInfo1.SetActive(true);
-        creditsInfo2.SetActive(true);
-        aim.SetActive(false);
-        move.SetActive(false);
-        action.SetActive(false);
-    }
-
-
 }

@@ -9,8 +9,4 @@ public class GameManager : MonoBehaviour {
     {
         Config.getInstance().LoadInfosScene();
 	}
-
-
-	
-	
 }
