@@ -3053,11 +3053,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4210520211590774, guid: 455b4cfbe7e23ed4e90808d194131691, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.029999971
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: 4210520211590774, guid: 455b4cfbe7e23ed4e90808d194131691, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -2.7116914
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 4210520211590774, guid: 455b4cfbe7e23ed4e90808d194131691, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3078,6 +3078,18 @@ Prefab:
     - target: {fileID: 4210520211590774, guid: 455b4cfbe7e23ed4e90808d194131691, type: 2}
       propertyPath: m_RootOrder
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210520211590774, guid: 455b4cfbe7e23ed4e90808d194131691, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.16250008
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210520211590774, guid: 455b4cfbe7e23ed4e90808d194131691, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.5375001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210520211590774, guid: 455b4cfbe7e23ed4e90808d194131691, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.46951637
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 455b4cfbe7e23ed4e90808d194131691, type: 2}
@@ -4211,9 +4223,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Convex: 0
-  m_CookingOptions: 14
+  m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &729080164
@@ -4559,7 +4571,6 @@ Camera:
   m_TargetEye: 3
   m_HDR: 0
   m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -5567,7 +5578,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: cea6e5f4068fcf745a30fa39343aaead, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.17
   m_Pitch: 1
   Loop: 1
   Mute: 0
