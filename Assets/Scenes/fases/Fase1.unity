@@ -2525,7 +2525,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showDeadEffect: 0
-  gameOverScene: SceneDied
   deadCameraPos: {fileID: 1112076570}
   slowDownPhysics: 0.01
 --- !u!114 &771027479
@@ -4671,6 +4670,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114934673659781586, guid: f558752bda96a4dd2ac0c601c7ba05b2,
+        type: 2}
+      propertyPath: alertDistPercent
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f558752bda96a4dd2ac0c601c7ba05b2, type: 2}
   m_IsPrefabParent: 0
@@ -5487,6 +5491,31 @@ Prefab:
     - target: {fileID: 4754577807603490, guid: 1f150fac26dddfa45aae1daf7c5c8649, type: 2}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 65053598391107930, guid: 1f150fac26dddfa45aae1daf7c5c8649,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65982798700756058, guid: 1f150fac26dddfa45aae1daf7c5c8649,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 33.814423
+      objectReference: {fileID: 0}
+    - target: {fileID: 65982798700756058, guid: 1f150fac26dddfa45aae1daf7c5c8649,
+        type: 2}
+      propertyPath: m_Center.x
+      value: 9.2286625
+      objectReference: {fileID: 0}
+    - target: {fileID: 65982798700756058, guid: 1f150fac26dddfa45aae1daf7c5c8649,
+        type: 2}
+      propertyPath: m_Center.y
+      value: -0.0000070403535
+      objectReference: {fileID: 0}
+    - target: {fileID: 65982798700756058, guid: 1f150fac26dddfa45aae1daf7c5c8649,
+        type: 2}
+      propertyPath: m_Center.z
+      value: 29.210201
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1f150fac26dddfa45aae1daf7c5c8649, type: 2}
