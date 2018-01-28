@@ -33,6 +33,9 @@ public class Player : MonoBehaviour {
     void Update() {
         // Funcao de Movimentacao
         Move();
+
+        // Verifica se há algum objeto com ação proximo
+        CheckForActionItem();
     }
 
     void Move() {
@@ -51,20 +54,34 @@ public class Player : MonoBehaviour {
         animatorController.setForward(movement.magnitude);
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Disguise")
-        {
-            if (!disguised) {
-                DisguiseBox disguise = other.gameObject.GetComponent<DisguiseBox>();
-                //                spritePlayer.GetComponent<SpriteRenderer>().sprite = disguise.sprite;
-                disguised = true;
-            }
-        }
-        else if (other.gameObject.tag == "Info")
-        {
-            Config.getInstance().UpdateCollectedInfos();
-            Destroy(other.gameObject);
 
+    Config config;
+
+    public Vector3 center;
+    public float radius = 0.5f;
+    double i = 0.5;
+
+
+    // Update is called once per frame
+    void CheckForActionItem ()
+    {
+        if (Input.GetButtonDown("X360_A01"))
+        {
+            Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
+            foreach (Collider other in colliders){
+                if (other.gameObject.tag == "Disguise")
+                {
+                    if (!disguised) {
+                        disguised = true;
+                    }
+                }
+                else if (other.gameObject.tag == "Info")
+                {
+                    Config.getInstance().UpdateCollectedInfos();
+                    Destroy(other.gameObject);
+
+                }
+            }
         }
     }
 }
