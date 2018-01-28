@@ -2,8 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
-{
+public class Player : MonoBehaviour {
 
     private Countdown countdown;
 
@@ -34,18 +33,16 @@ public class Player : MonoBehaviour
     //GameObject player4;
 
     // Use this for initialization
-    void Awake()
-    {
+    void Awake() {
         MoveRight = true;
         MoveLeft = false;
         MoveUp = false;
         MoveDown = false;
 
-        
+
     }
 
-    void Start()
-    {
+    void Start() {
         countdown = FindObjectOfType(typeof(Countdown)) as Countdown;
 
         //lifeText = GameObject.Find("LifePlayer1").GetComponentInChildren<Text>();
@@ -62,8 +59,7 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
 
         timeRemaining += Time.deltaTime;
         float seconds = (timeRemaining % 60);
@@ -79,60 +75,54 @@ public class Player : MonoBehaviour
                 Shoot();
                 timeRemaining = 0;
             }
-        }        
+        }
     }
 
     // Seleciona o tiro que sera utilizado e atira
-    public void Shoot()
-    {
+    public void Shoot() {
         if (ammo > 0)
         {
             GameObject tmpBullet = (GameObject)(Instantiate(bullet, bulletPosition.transform.position, Quaternion.identity));
 
             if (MoveRight)
-            tmpBullet.GetComponent<Bullet>().StartDirection(Vector3.right);
+                tmpBullet.GetComponent<Bullet>().StartDirection(Vector3.right);
             else if (MoveLeft)
-            tmpBullet.GetComponent<Bullet>().StartDirection(Vector3.left);
+                tmpBullet.GetComponent<Bullet>().StartDirection(Vector3.left);
             else if (MoveUp)
-            tmpBullet.GetComponent<Bullet>().StartDirection(new Vector3(0,0,1));
+                tmpBullet.GetComponent<Bullet>().StartDirection(new Vector3(0, 0, 1));
             else if (MoveDown)
-            tmpBullet.GetComponent<Bullet>().StartDirection(new Vector3(0, 0, -1));
+                tmpBullet.GetComponent<Bullet>().StartDirection(new Vector3(0, 0, -1));
 
             //ammo -= 1;
             //ammoText.text = "x " + ammo;
         }
     }
 
-    void AimingLeft()
-    {
+    void AimingLeft() {
         MoveRight = false; MoveLeft = true; MoveUp = false; MoveDown = false;
         bulletPosition.transform.position = new Vector3(spritePlayer.transform.position.x - 0.5f, 1, spritePlayer.transform.position.z);
         arma.transform.position = new Vector3(spritePlayer.transform.position.x - 0.25f, 1, spritePlayer.transform.position.z);
     }
 
-    void AimingRight()
-    {
+    void AimingRight() {
         MoveRight = true; MoveLeft = false; MoveUp = false; MoveDown = false;
         bulletPosition.transform.position = new Vector3(spritePlayer.transform.position.x + 0.5f, 1, spritePlayer.transform.position.z);
         arma.transform.position = new Vector3(spritePlayer.transform.position.x + 0.25f, 1, spritePlayer.transform.position.z);
     }
 
-    void AimingUp()
-    {
+    void AimingUp() {
         MoveRight = false; MoveLeft = false; MoveUp = true; MoveDown = false;
         bulletPosition.transform.position = new Vector3(spritePlayer.transform.position.x, 1, spritePlayer.transform.position.z + 0.5f);
         arma.transform.position = new Vector3(spritePlayer.transform.position.x, 1, spritePlayer.transform.position.z + 0.25f);
     }
 
-    void AimingDown()
-    {
+    void AimingDown() {
         MoveRight = false; MoveLeft = false; MoveUp = false; MoveDown = true;
         bulletPosition.transform.position = new Vector3(spritePlayer.transform.position.x, 1, spritePlayer.transform.position.z - 0.5f);
         arma.transform.position = new Vector3(spritePlayer.transform.position.x, 1, spritePlayer.transform.position.z - 0.25f);
     }
 
-    void CallAim()
-    {
+    void CallAim() {
         if (Input.GetAxisRaw("X360_RStickX01") < 0)
         {
             AimingLeft();
@@ -151,15 +141,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Move()
-    {
+    void Move() {
         var movimento = new Vector3(Input.GetAxisRaw("X360_LStickX01"), Input.GetAxisRaw("X360_LStickY01"), 0);
         transform.Translate(velocity * movimento.normalized * Time.deltaTime);
         movimento = Vector3.zero;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
+    private void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "Ammo")
         {
             //ammo += 5;
@@ -174,29 +162,28 @@ public class Player : MonoBehaviour
         }
         else if (other.gameObject.tag == "Disguise")
         {
-            DisguiseBox disguise = other.gameObject.GetComponent<DisguiseBox>();
-            spritePlayer.GetComponent<SpriteRenderer>().sprite = disguise.sprite;
-            Destroy(other.gameObject);
-            disguised = true;
+            if (!disguised) {
+                DisguiseBox disguise = other.gameObject.GetComponent<DisguiseBox>();
+                spritePlayer.GetComponent<SpriteRenderer>().sprite = disguise.sprite;
+                disguised = true;
+            }
         }
         else if (other.gameObject.tag == "Info")
         {
             Config.getInstance().UpdateCollectedInfos();
             Destroy(other.gameObject);
-            
+
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
+    private void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.tag == "Enemy")
         {
             TakeDamage(collision.gameObject);
         }
     }
 
-    public void TakeDamage(GameObject enemy)
-    {
+    public void TakeDamage(GameObject enemy) {
         life -= 1;
         //lifeText.text = "x " + life;
 
@@ -207,17 +194,6 @@ public class Player : MonoBehaviour
             countdown.playersDied += 1;
             //Remove o player morto da cena
             Destroy(gameObject);
-
-            //Verifica se os outros jogadores estão vivos ainda
-            //if (player2.activeInHierarchy || player3.activeInHierarchy || player4.activeInHierarchy)
-            //{
-            //    return;
-            //}
-            //else
-            //{
-            //    //Executar game over
-            //    SceneManager.LoadScene("SceneDied");
-            //}
         }
     }
 

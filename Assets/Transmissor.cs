@@ -25,7 +25,7 @@ public class Transmissor : MonoBehaviour {
                 {    
                     Debug.Log("All infos collected!!!");
                     Config.getInstance().SetNextScene(nextScene);
-                    SceneManager.LoadScene("SceneVictory");
+                    Initiate.Fade("SceneVictory", Color.black, 2f);
                 }
                 else
                 {
