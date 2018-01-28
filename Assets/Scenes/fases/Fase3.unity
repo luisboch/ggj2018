@@ -4915,15 +4915,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 114934673659781586, guid: f558752bda96a4dd2ac0c601c7ba05b2,
-        type: 2}
-      propertyPath: alertDistPercent
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4947206614186048, guid: f558752bda96a4dd2ac0c601c7ba05b2, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f558752bda96a4dd2ac0c601c7ba05b2, type: 2}
   m_IsPrefabParent: 0
@@ -6742,11 +6733,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114798147997137450, guid: da0385008f7b5452e8920dda94ef7c8f,
-        type: 2}
-      propertyPath: patrolRoute.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4547291133120350, guid: da0385008f7b5452e8920dda94ef7c8f, type: 2}
       propertyPath: m_LocalPosition.x
       value: -0.7926271
@@ -6799,14 +6785,6 @@ Prefab:
       propertyPath: patrolRoute.Array.data[3]
       value: 
       objectReference: {fileID: 1985486293}
-    - target: {fileID: 4547291133120350, guid: da0385008f7b5452e8920dda94ef7c8f, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90.00001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1648137017092112, guid: da0385008f7b5452e8920dda94ef7c8f, type: 2}
-      propertyPath: m_TagString
-      value: Soldier
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: da0385008f7b5452e8920dda94ef7c8f, type: 2}
   m_IsPrefabParent: 0
