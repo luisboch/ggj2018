@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class ButtonBack : MonoBehaviour {
+public class NextButton : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -11,14 +12,12 @@ public class ButtonBack : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
         if (Camera.main.transform.position == new Vector3(17, 0, -10))
         {
-            if (((Input.GetButtonDown("X360_B01"))) )
+            if (((Input.GetButtonDown("X360_A01"))))
             {
-                Camera.main.transform.position = new Vector3(0, 0, -10);
+                SceneManager.LoadScene(Config.getInstance().GetNextScene());
             }
         }
-
-    }
+	}
 }

@@ -12,6 +12,7 @@ public class Config : MonoBehaviour {
     private List<GameObject> infos = new List<GameObject>();
     private static int collectedInfos;
     private static int infosCountScene;
+    private static string nextScene;
 
     public bool alert {
         get {
@@ -48,7 +49,11 @@ public class Config : MonoBehaviour {
     public static Config getInstance() {
         if (instance == null) {
             instance = new Config();
-            //Debug.LogWarning("No Config found, using default!");
+            Debug.LogWarning("No Config found, using default!");
+        }
+        else
+        {
+            Debug.LogWarning("There is a Config already!!! Let's use it!");
         }
         return instance;
     }
@@ -77,6 +82,16 @@ public class Config : MonoBehaviour {
     public bool IsAllInfosCollected()
     {
         return infosCountScene > 0 && collectedInfos >= infosCountScene;
+    }
+
+    public void SetNextScene(string s)
+    {
+        nextScene = s;
+    }
+
+    public string GetNextScene()
+    {
+        return nextScene;
     }
 
 }

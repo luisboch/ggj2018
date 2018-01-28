@@ -7,6 +7,7 @@ using System.Linq;
 public class Transmissor : MonoBehaviour {
 
     public float radius = 1f;
+    public string nextScene;
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +24,8 @@ public class Transmissor : MonoBehaviour {
                 if (Config.getInstance().IsAllInfosCollected())
                 {    
                     Debug.Log("All infos collected!!!");
-                    SceneManager.LoadScene("SceneBase");
+                    Config.getInstance().SetNextScene(nextScene);
+                    SceneManager.LoadScene("SceneVictory");
                 }
                 else
                 {
