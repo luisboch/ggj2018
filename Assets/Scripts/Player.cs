@@ -58,11 +58,13 @@ public class Player : MonoBehaviour {
                 DisguiseBox disguise = other.gameObject.GetComponent<DisguiseBox>();
                 //                spritePlayer.GetComponent<SpriteRenderer>().sprite = disguise.sprite;
                 disguised = true;
+                FeedbackMessage.getInstance().AddMessage("Voce pegou um disfarce", 5);
             }
         }
         else if (other.gameObject.tag == "Info")
         {
             Config.getInstance().UpdateCollectedInfos();
+            FeedbackMessage.getInstance().AddMessage("Voce pegou uma informacao", 5);
             Destroy(other.gameObject);
 
         }
