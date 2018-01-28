@@ -12,8 +12,8 @@ public class Player : MonoBehaviour {
     private bool MoveRight, MoveLeft, MoveUp, MoveDown;
 
     public bool disguised = false;
-    public float velocity = 0.5f;
-
+    public float velocityMultiplier = 0.5f;
+    public float runMultiplier = 0.5f;
 
     private SoldierAnimatorController animatorController;
 
@@ -36,12 +36,20 @@ public class Player : MonoBehaviour {
     }
 
     void Move() {
-        var movimento = new Vector3(Input.GetAxisRaw("X360_LStickX01"), 0, Input.GetAxisRaw("X360_LStickY01"));
-        Debug.Log(movimento);
-        Vector3 dir = transform.position + movimento;
+        Vector3 movement = new Vector3(Input.GetAxisRaw("X360_LStickX01"), 0, Input.GetAxisRaw("X360_LStickY01"));
+        float run = Input.GetAxisRaw("X360_RightTrigger01");
+        if (Input.GetAxisRaw("X360_RightTrigger01") < 0) {
+            Debug.Log("RUNNIGN");
+        }
+
+        Vector3 dir = transform.position + movement;
         transform.LookAt(dir);
-        transform.position += (velocity * movimento * Time.deltaTime);
-        animatorController.setForward(movimento.magnitude);
+        Debug.Log(run);
+        run *= runMultiplier;
+        float multiplierResult = velocityMultiplier + run;
+        transform.position += (  multiplierResult * movement * Time.deltaTime);
+
+        animatorController.setForward(movement.magnitude);
     }
 
     private void OnTriggerEnter(Collider other) {
