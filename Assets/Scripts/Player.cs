@@ -63,7 +63,7 @@ public class Player : MonoBehaviour {
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
             foreach (Collider other in colliders){
-                if (other.gameObject.tag == "Disguise")
+                if (other.gameObject.tag == "Disguise" && disguised == false)
                 {
                     FeedbackMessage.getInstance().AddMessage("Voce pegou um disfarce", 5);
 
