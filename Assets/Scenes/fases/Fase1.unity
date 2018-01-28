@@ -538,11 +538,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4803064608710612, guid: d957454994e0f4749ba679728a75fb38, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 338
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4803064608710612, guid: d957454994e0f4749ba679728a75fb38, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 163
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4803064608710612, guid: d957454994e0f4749ba679728a75fb38, type: 2}
       propertyPath: m_LocalPosition.z
@@ -566,7 +566,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4803064608710612, guid: d957454994e0f4749ba679728a75fb38, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d957454994e0f4749ba679728a75fb38, type: 2}
@@ -2402,9 +2402,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Convex: 0
-  m_InflateMesh: 0
+  m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &729080164
@@ -2695,6 +2695,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 0
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -2710,7 +2711,7 @@ Transform:
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: 0}
 --- !u!114 &771027478
 MonoBehaviour:
@@ -3872,7 +3873,7 @@ Transform:
   - {fileID: 1787952931}
   - {fileID: 48832191}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &957536840
 MonoBehaviour:
@@ -5192,7 +5193,7 @@ Transform:
   m_LocalScale: {x: 100.00003, y: 100.00011, z: 100.00008}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1554478003
 Prefab:
