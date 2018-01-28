@@ -43,6 +43,7 @@ public class SecurityCamera : MonoBehaviour {
 
     void FixedUpdate() {
         lineOfSight.enabled = _config.lightIsOn;
+        lineOfSight.SetStatus(LineOfSight.Status.Idle);
 
         if (lineOfSight.enabled) {
             if (lineOfSight.SeeByTag("Player")) {
@@ -68,6 +69,7 @@ public class SecurityCamera : MonoBehaviour {
                     }
 
                     if (nearest != null) {
+
                         FSMManager g = nearest.GetComponent<FSMManager>();
                         BasicObjectAttr attr = nearest.GetComponent<BasicObjectAttr>();
                         // We arrive to destination
@@ -81,7 +83,8 @@ public class SecurityCamera : MonoBehaviour {
                         }
                     }
                 }
-                _config.alert = true;
+
+                lineOfSight.SetStatus(LineOfSight.Status.Alerted);
 
             }
         }
