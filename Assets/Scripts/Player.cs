@@ -42,7 +42,6 @@ public class Player : MonoBehaviour {
         Vector3 movement = new Vector3(Input.GetAxisRaw("X360_LStickX01"), 0, Input.GetAxisRaw("X360_LStickY01"));
         //float run = Mathf.Abs(Input.GetAxisRaw("X360_RightTrigger01"));
         float run = Input.GetButton("X360_X01") ? 1 : 0;
-        Debug.Log(run);
 
         Vector3 dir = transform.position + movement;
         transform.LookAt(dir);
