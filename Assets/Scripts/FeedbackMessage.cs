@@ -68,7 +68,17 @@ class FeedbackMessage : MonoBehaviour
 			Message = message,
 			DurationTime = durationTime
 		};
-		Messages.Add(item);
+
+		var existingMessage = Messages.Find(m => m.Message == message);
+
+		if (existingMessage == null)
+		{
+			Messages.Add(item);
+		}
+		else
+		{
+			existingMessage.DurationTime = durationTime;
+		}
 	}
 	
 	void OnGUI()
