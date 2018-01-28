@@ -53,6 +53,23 @@ public class Player : MonoBehaviour {
         animatorController.setForward(movement.magnitude);
     }
 
+<<<<<<< HEAD
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == "Disguise")
+        {
+            if (!disguised) {
+                DisguiseBox disguise = other.gameObject.GetComponent<DisguiseBox>();
+                //                spritePlayer.GetComponent<SpriteRenderer>().sprite = disguise.sprite;
+                disguised = true;
+                FeedbackMessage.getInstance().AddMessage("Voce pegou um disfarce", 5);
+            }
+        }
+        else if (other.gameObject.tag == "Info")
+        {
+            Config.getInstance().UpdateCollectedInfos();
+            FeedbackMessage.getInstance().AddMessage("Voce pegou uma informacao", 5);
+            Destroy(other.gameObject);
+=======
 
     Config config;
 
@@ -78,6 +95,7 @@ public class Player : MonoBehaviour {
                 {
                     Config.getInstance().UpdateCollectedInfos();
                     Destroy(other.gameObject);
+>>>>>>> 5eba044f64c4393718aac4387c221f13337a850b
 
                 }
             }
