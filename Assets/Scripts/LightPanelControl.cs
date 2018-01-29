@@ -32,7 +32,7 @@ public class LightPanelControl : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        if (Input.GetButtonDown("X360_A01"))
+        if (Input.GetButtonDown("Jump"))
         {
             if (inRange())
             {

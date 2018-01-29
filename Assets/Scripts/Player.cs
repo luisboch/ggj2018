@@ -38,13 +38,20 @@ public class Player : MonoBehaviour {
     }
 
     void Move() {
-        Vector3 movement = new Vector3(Input.GetAxisRaw("X360_LStickX01"), 0, Input.GetAxisRaw("X360_LStickY01"));
-        //float run = Mathf.Abs(Input.GetAxisRaw("X360_RightTrigger01"));
-        float run = Input.GetButton("X360_X01") ? 1 : 0;
+        Vector3 movement;
+        float run;
 
+#if UNITY_EDITOR || UNITY_STANDALONE || WEB_PLAYER
+
+        movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        //float run = Mathf.Abs(Input.GetAxisRaw("X360_RightTrigger01"));
+        run = Input.GetButton("Jump") ? 1 : 0;
+#else
+
+#endif
         Vector3 dir = transform.position + movement;
         transform.LookAt(dir);
-        
+
         run *= runMultiplier;
         float multiplierResult = velocityMultiplier + run;
         transform.position += (  multiplierResult * movement * Time.deltaTime);
@@ -57,12 +64,11 @@ public class Player : MonoBehaviour {
 
 
     // Update is called once per frame
-    void CheckForActionItem ()
-    {
-        if (Input.GetButtonDown("X360_A01"))
+    void CheckForActionItem() {
+        if (Input.GetButtonDown("Fire1"))
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
-            foreach (Collider other in colliders){
+            foreach (Collider other in colliders) {
                 if (other.gameObject.tag == "Disguise" && disguised == false)
                 {
                     FeedbackMessage.getInstance().AddMessage("Voce pegou um disfarce", 5);
