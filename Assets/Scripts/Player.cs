@@ -1,27 +1,20 @@
 using UnityEngine;
 
+[RequireComponent(typeof(MobileController))]
 public class Player : MonoBehaviour {
-
-    private Countdown countdown;
-
-    float timeRemaining = 0f;
-    public float force;
-
-    private bool MoveRight, MoveLeft, MoveUp, MoveDown;
 
     public bool disguised = false;
     public float velocityMultiplier = 0.5f;
     public float runMultiplier = 0.5f;
     public float radius = 0.5f;
 
+    private MobileController mobileController;
+
     private SoldierAnimatorController animatorController;
 
     // Use this for initialization
     void Awake() {
-        MoveRight = true;
-        MoveLeft = false;
-        MoveUp = false;
-        MoveDown = false;
+        mobileController = GetComponent<MobileController>();
     }
 
     void Start() {
@@ -41,14 +34,16 @@ public class Player : MonoBehaviour {
         Vector3 movement;
         float run;
 
-#if UNITY_EDITOR || UNITY_STANDALONE || WEB_PLAYER
-
         movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         //float run = Mathf.Abs(Input.GetAxisRaw("X360_RightTrigger01"));
         run = Input.GetButton("Jump") ? 1 : 0;
-#else
 
-#endif
+        // Maybe mobile movement?
+        if (movement == Vector3.zero) {
+            movement = new Vector3(mobileController.getHorizontal(), 0, mobileController.getVertical());
+            run = mobileController.isRunning() ? 1 : 0;
+        }
+
         Vector3 dir = transform.position + movement;
         transform.LookAt(dir);
 
@@ -59,13 +54,12 @@ public class Player : MonoBehaviour {
         animatorController.setForward(movement.magnitude);
     }
 
-
-
-
-
     // Update is called once per frame
     void CheckForActionItem() {
-        if (Input.GetButtonDown("Fire1"))
+        bool action = false;
+        action = Input.GetButtonDown("Fire1");
+        action = action || mobileController.isAction();
+        if (action)
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
             foreach (Collider other in colliders) {
