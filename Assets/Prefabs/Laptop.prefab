@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33245258802623796}
   - component: {fileID: 23412267999025486}
   - component: {fileID: 114122905173356684}
-  - component: {fileID: 65967718367301976}
+  - component: {fileID: 135857627667275882}
   m_Layer: 0
   m_Name: Laptop
   m_TagString: Untagged
@@ -36,8 +36,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1157472420011838}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 5.27, y: -0.18, z: 5.714}
+  m_LocalRotation: {x: -0, y: -0.60255426, z: -0, w: 0.798078}
+  m_LocalPosition: {x: 2.382, y: -0.11, z: -1.6759994}
   m_LocalScale: {x: 0.0051, y: 0.0051, z: 0.0051}
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,18 +84,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1157472420011838}
   m_Mesh: {fileID: 4300000, guid: 632eb3dd7aacc1744a4c6f27093ed854, type: 3}
---- !u!65 &65967718367301976
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1157472420011838}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 79.33094, y: 40.46628, z: 93.99199}
-  m_Center: {x: 0.90159035, y: 17.7333, z: 16.58706}
 --- !u!114 &114122905173356684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -108,4 +96,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 1
-  nextScene: 
+  nextScene: Credits
+--- !u!135 &135857627667275882
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1157472420011838}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 40.9
+  m_Center: {x: -2.0600946, y: 17.733297, z: 16.360428}

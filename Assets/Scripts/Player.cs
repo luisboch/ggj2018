@@ -7,11 +7,17 @@ public class Player : MonoBehaviour {
     public float velocityMultiplier = 0.5f;
     public float runMultiplier = 0.5f;
     public float radius = 0.5f;
+    public float height = 1f;
+
 
     private SimpleMobileController mobileController;
 
     private SoldierAnimatorController animatorController;
 
+    void OnDrawGizmos() {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(this.transform.position + new Vector3(0f, height, 0f), radius);
+    }
     // Use this for initialization
     void Awake() {
         mobileController = GetComponent<SimpleMobileController>();
@@ -60,23 +66,10 @@ public class Player : MonoBehaviour {
         action = Input.GetButtonDown("Fire1") || mobileController.getAction1();
         if (action)
         {
-            Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
+            Collider[] colliders = Physics.OverlapSphere(transform.position + new Vector3(0f, height, 0f), radius);
             foreach (Collider other in colliders) {
-                if (other.gameObject.tag == "Disguise" && disguised == false)
-                {
-                    FeedbackMessage.getInstance().AddMessage("Voce pegou um disfarce", 5);
 
-                    if (!disguised) {
-                        disguised = true;
-                    }
-                }
-                else if (other.gameObject.tag == "Info")
-                {
-                    Config.getInstance().UpdateCollectedInfos();
-                    FeedbackMessage.getInstance().AddMessage("Voce pegou uma informação", 5);
-                    Destroy(other.gameObject);
-
-                }
+                other.gameObject.Send<Actionable>(_ => _.doAction(this));
             }
         }
     }

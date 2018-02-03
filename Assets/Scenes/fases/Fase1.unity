@@ -1139,45 +1139,9 @@ Prefab:
       propertyPath: m_Name
       value: coffee_table_1 (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 400004, guid: 6aefd9b8d8cb28f4f87b54d78bf0fca3, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 400004, guid: 6aefd9b8d8cb28f4f87b54d78bf0fca3, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 6aefd9b8d8cb28f4f87b54d78bf0fca3, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 6aefd9b8d8cb28f4f87b54d78bf0fca3, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 6aefd9b8d8cb28f4f87b54d78bf0fca3, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6aefd9b8d8cb28f4f87b54d78bf0fca3, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &235433424 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100004, guid: 6aefd9b8d8cb28f4f87b54d78bf0fca3, type: 2}
-  m_PrefabInternal: {fileID: 235433423}
---- !u!65 &235433425
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 235433424}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &267405358
 Prefab:
   m_ObjectHideFlags: 0
@@ -5827,10 +5791,6 @@ Prefab:
     - target: {fileID: 4910563923090636, guid: f86baf8b09ca9cc4e8b541b884fba859, type: 2}
       propertyPath: m_RootOrder
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4910563923090636, guid: f86baf8b09ca9cc4e8b541b884fba859, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 114122905173356684, guid: f86baf8b09ca9cc4e8b541b884fba859,
         type: 2}

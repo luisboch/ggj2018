@@ -2853,37 +2853,9 @@ Prefab:
       propertyPath: m_Name
       value: coffee_table_1 (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 6aefd9b8d8cb28f4f87b54d78bf0fca3, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 6aefd9b8d8cb28f4f87b54d78bf0fca3, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 6aefd9b8d8cb28f4f87b54d78bf0fca3, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6aefd9b8d8cb28f4f87b54d78bf0fca3, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &469798337 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100004, guid: 6aefd9b8d8cb28f4f87b54d78bf0fca3, type: 2}
-  m_PrefabInternal: {fileID: 469798336}
---- !u!65 &469798338
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 469798337}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &471155365
 GameObject:
   m_ObjectHideFlags: 0
@@ -2895,6 +2867,7 @@ GameObject:
   - component: {fileID: 471155366}
   - component: {fileID: 471155368}
   - component: {fileID: 471155369}
+  - component: {fileID: 471155370}
   m_Layer: 0
   m_Name: Config
   m_TagString: Untagged
@@ -3021,6 +2994,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &471155370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 471155365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3f2928a4ba3e4d0daf89db7f7c02c3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &476183389
 Prefab:
   m_ObjectHideFlags: 0
@@ -3244,17 +3228,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 4210520211590774, guid: 455b4cfbe7e23ed4e90808d194131691, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.16250008
-      objectReference: {fileID: 0}
-    - target: {fileID: 4210520211590774, guid: 455b4cfbe7e23ed4e90808d194131691, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.5375001
-      objectReference: {fileID: 0}
-    - target: {fileID: 4210520211590774, guid: 455b4cfbe7e23ed4e90808d194131691, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.46951637
+    - target: {fileID: 65669375275557222, guid: 455b4cfbe7e23ed4e90808d194131691,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 455b4cfbe7e23ed4e90808d194131691, type: 2}
