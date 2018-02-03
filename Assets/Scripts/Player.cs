@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(MobileController))]
+[RequireComponent(typeof(SimpleMobileController))]
 public class Player : MonoBehaviour {
 
     public bool disguised = false;
@@ -8,13 +8,13 @@ public class Player : MonoBehaviour {
     public float runMultiplier = 0.5f;
     public float radius = 0.5f;
 
-    private MobileController mobileController;
+    private SimpleMobileController mobileController;
 
     private SoldierAnimatorController animatorController;
 
     // Use this for initialization
     void Awake() {
-        mobileController = GetComponent<MobileController>();
+        mobileController = GetComponent<SimpleMobileController>();
     }
 
     void Start() {
@@ -41,7 +41,7 @@ public class Player : MonoBehaviour {
         // Maybe mobile movement?
         if (movement == Vector3.zero) {
             movement = new Vector3(mobileController.getHorizontal(), 0, mobileController.getVertical());
-            run = mobileController.isRunning() ? 1 : 0;
+            run = mobileController.getAction2() ? 1 : 0;
         }
 
         Vector3 dir = transform.position + movement;
@@ -57,8 +57,7 @@ public class Player : MonoBehaviour {
     // Update is called once per frame
     void CheckForActionItem() {
         bool action = false;
-        action = Input.GetButtonDown("Fire1");
-        action = action || mobileController.isAction();
+        action = Input.GetButtonDown("Fire1") || mobileController.getAction1();
         if (action)
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position, radius);

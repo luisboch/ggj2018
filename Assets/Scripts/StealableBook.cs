@@ -20,7 +20,7 @@ public class StealableBook : MonoBehaviour
 
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetButtonDown("X360_A01"))
+		if(Input.GetButtonDown("Fire1") || SimpleMobileController.GetInstance().getAction1())
 		{
 			Collider[] col = Physics.OverlapSphere(transform.position, Radius);
 			foreach (Collider c in col)

@@ -14,7 +14,7 @@ public class Switch : MonoBehaviour {
 	
     void FixedUpdate()
     {
-        if(Input.GetButtonDown("X360_A01"))
+        if( Input.GetButtonDown("Fire1") || SimpleMobileController.GetInstance().getAction1())
         {
             Collider[] col = Physics.OverlapSphere(transform.position, radius);
             foreach (Collider c in col)

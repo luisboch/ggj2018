@@ -9,7 +9,7 @@ public class Gameover : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("X360_B01"))
+        if (Input.GetButtonDown("Fire1") || SimpleMobileController.GetInstance().getAction1())
         {
             Initiate.Fade("Menu", Color.black, fadeTime);
         }

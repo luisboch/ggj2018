@@ -262,6 +262,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 0
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -922,6 +923,7 @@ GameObject:
   - component: {fileID: 1928491230}
   - component: {fileID: 1928491231}
   - component: {fileID: 1928491229}
+  - component: {fileID: 1928491232}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -1034,6 +1036,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1928491232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1928491228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f7ba52023b2474d9dc7b233be35336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionTime: 0.2
+  touchPos1: {x: 0, y: 0}
+  precisionFix: 8
 --- !u!1 &1961970538
 GameObject:
   m_ObjectHideFlags: 0

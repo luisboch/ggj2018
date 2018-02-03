@@ -69,7 +69,7 @@ public class Menu : MonoBehaviour {
                 GetMenuOptionFromControllerXBOX();
 
                 // Entrar em alguma opcao do menu / cena
-                if (Input.GetButtonDown("X360_A01"))
+                if (Input.GetButtonDown("Fire1") || SimpleMobileController.GetInstance().getAction1())
                 {
                     if (MainMenuOption == MainOption.PLAY)
                     {

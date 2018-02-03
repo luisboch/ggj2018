@@ -1269,11 +1269,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 442333580}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f517e7796ab04fd287cfbcd9bf2fa37, type: 3}
+  m_Script: {fileID: 11500000, guid: 66f7ba52023b2474d9dc7b233be35336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplier: 3
   actionTime: 0.2
+  touchPos1: {x: 0, y: 0}
+  precisionFix: 8
 --- !u!1001 &445568962
 Prefab:
   m_ObjectHideFlags: 0

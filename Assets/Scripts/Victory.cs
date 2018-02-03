@@ -18,7 +18,7 @@ public class Victory : MonoBehaviour {
         {
             Initiate.Fade("Menu", Color.black, fadeTime);
         }
-        else if (Input.GetButtonDown("X360_A01"))
+        else if (Input.GetButtonDown("Fire1") || SimpleMobileController.GetInstance().getAction1())
         {
             if (string.IsNullOrEmpty(nextScene))
             {

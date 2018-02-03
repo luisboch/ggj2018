@@ -17,7 +17,7 @@ public class Transmissor : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetButtonDown("Jump"))
+        if ( Input.GetButtonDown("Fire1") || SimpleMobileController.GetInstance().getAction1())
         {
             if (inRange())
             {
