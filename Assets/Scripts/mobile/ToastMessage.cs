@@ -1,13 +1,16 @@
 using UnityEngine;
 
-public class ToastMessage : MonoBehaviour {
+public class ToastMessage {
+
+    public static ToastMessage instance;
+
     string toastString;
     string input;
     AndroidJavaObject currentActivity;
     AndroidJavaClass UnityPlayer;
     AndroidJavaObject context;
 
-    void Start() {
+    private ToastMessage() {
         if (Application.platform == RuntimePlatform.Android)
         {
             UnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
@@ -16,9 +19,21 @@ public class ToastMessage : MonoBehaviour {
         }
     }
 
+    public static ToastMessage getInstance() {
+        if (instance == null) {
+            instance = new ToastMessage();
+        }
 
-    public void showToastOnUiThread(string toastString) {
-        this.toastString = toastString;
+        return instance;
+    }
+
+
+    public static void Show(string msg) {
+        getInstance().ShowMsg(msg);
+    }
+
+    public void ShowMsg(string msg) {
+        this.toastString = msg;
         currentActivity.Call("runOnUiThread", new AndroidJavaRunnable(showToast));
     }
 

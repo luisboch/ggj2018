@@ -55,15 +55,19 @@ public class SimpleMobileController : MonoBehaviour {
 
         if (Input.touchCount > 1 && Input.touches[1].fingerId == 1) {
             Touch t = Input.touches[1];
-            if (t.phase == TouchPhase.Began) {
+            if (t.phase == TouchPhase.Began && !stats.action2 ) {
                 stats.action2 = true;
-            } else if (t.phase == TouchPhase.Ended) {
+            } else if (t.phase == TouchPhase.Ended && stats.action2) {
                 stats.action2 = false;
             }
+            checkForAction(t);
         }
 
         this.horizontal = stats.movement.x * this.calcFix;
         this.vertical = stats.movement.y * this.calcFix;
+
+        this.horizontal = Mathf.Min(Mathf.Abs(this.horizontal), 1) * (stats.movement.x > 0 ? 1: -1);
+        this.vertical = Mathf.Min(Mathf.Abs(this.vertical), 1) * (stats.movement.y > 0 ? 1: -1);
     }
 
     private void checkForAction(Touch t) {
@@ -90,7 +94,7 @@ public class SimpleMobileController : MonoBehaviour {
     }
 
     public bool getAction2() {
-        return stats.uniqueAction2();
+        return stats.isAction2();
     }
 
     protected class Stats {
