@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gameover : MonoBehaviour {
+public class GameOver : MonoBehaviour {
 
     public float fadeTime = 2.0f;
 
@@ -11,7 +11,11 @@ public class Gameover : MonoBehaviour {
     {
         if (Input.GetButtonDown("Fire1") || SimpleMobileController.GetInstance().getAction1())
         {
-            Initiate.Fade("Menu", Color.black, fadeTime);
+            goToMenu();
         }
+    }
+
+    public void goToMenu(){
+        Initiate.Fade("Menu", Color.black, fadeTime);
     }
 }

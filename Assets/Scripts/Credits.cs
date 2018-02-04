@@ -11,7 +11,11 @@ public class Credits : MonoBehaviour {
     {
 		if ( Input.GetButtonDown("Fire1") || SimpleMobileController.GetInstance().getAction1())
         {
-            Initiate.Fade("Menu", Color.black, fadeTime);
+            goToMenu();
         }
 	}
+
+    public void goToMenu(){
+        Initiate.Fade("Menu", Color.black, fadeTime);
+    }
 }
