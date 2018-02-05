@@ -34,7 +34,7 @@ public class Menu : MonoBehaviour {
     void UpdateMenuPos() {
         float vertical = Input.GetAxis("Vertical");
         vertical += SimpleMobileController.GetInstance().getVertical();
-        
+
         if (vertical > 0) {
             MainMenuOption = MainOption.PLAY;
         } else if (vertical < 0) {
